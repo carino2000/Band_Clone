@@ -11,7 +11,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://database-2.clwoya2662ja.ap-northeast-2.rds.amazonaws.com:3306/community?serverTimezone=Asia/Seoul"/>
+                <property name="url" value="jdbc:mysql://database-2.clwoya2662ja.ap-northeast-2.rds.amazonaws.com:3306/BandClone"/>
                 <property name="username" value="admin"/>
                 <property name="password" value="01023509231"/>
             </dataSource>
@@ -23,5 +23,6 @@
 <!--        <mapper resource="mappers/LoginHistoryMapper.xml"/>-->
 <!--        <mapper resource="mappers/ArticleMapper.xml"/>-->
 <!--        <mapper resource="mappers/ArticleLikeMapper.xml"/>-->
+        <mapper resource="mappers/MemberInfoMapper.xml"/>
     </mappers>
 </configuration>
