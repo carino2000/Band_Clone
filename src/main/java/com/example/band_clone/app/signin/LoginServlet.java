@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 
             //세션 쥐어주기
             req.getSession().setAttribute("logonUser", MemberUtil.selectMemberById(id));
-            resp.sendRedirect("/index");
+            resp.sendRedirect("/band-main");
 
         } else { // 로그인 실패
             String mainError = ValidateUtil.setErrMsg(result);
