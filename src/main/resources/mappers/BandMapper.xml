@@ -4,6 +4,11 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BandMapper">
 
+    <insert id="createNewBand" parameterType="Band" useGeneratedKeys="true" keyProperty="no">
+        insert into band (bandName, description, isPrivate, topic, masterId) values(#{bandName}, #{description}, #{isPrivate}, #{topic}, #{masterId});
+    </insert>
+
+
 
     <select id="selectMyBandsById" parameterType="string" resultType="Band">
         select * from bandMember join band on bandMember.bandNo = band.no where bandMember.memberId=#{id};

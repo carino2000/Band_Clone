@@ -26,6 +26,20 @@ public class Band {
     public Band() {
     }
 
+    public Band(String bandName, String description, Boolean isPrivate, String topic, String masterId) {
+        this.bandName = bandName;
+        this.description = description;
+        this.isPrivate = isPrivate;
+        this.topic = topic;
+        this.masterId = masterId;
+    }
+
+    public Band(String bandName, String description, Boolean isPrivate, String topic) {
+        this.bandName = bandName;
+        this.description = description;
+        this.isPrivate = isPrivate;
+        this.topic = topic;
+    }
 
     public String getPrettyWritingTime(){
         PrettyTime p = new PrettyTime(Locale.KOREA);

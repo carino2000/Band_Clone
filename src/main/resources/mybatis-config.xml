@@ -18,13 +18,9 @@
         </environment>
     </environments>
     <mappers>
-        <!--        <mapper resource="mappers/*.xml"/>-->
-<!--        <mapper resource="mappers/MemberinfoMapper.xml"/>-->
-<!--        <mapper resource="mappers/LoginHistoryMapper.xml"/>-->
-<!--        <mapper resource="mappers/ArticleMapper.xml"/>-->
-<!--        <mapper resource="mappers/ArticleLikeMapper.xml"/>-->
         <mapper resource="mappers/MemberInfoMapper.xml"/>
         <mapper resource="mappers/LoginHistoryMapper.xml"/>
         <mapper resource="mappers/BandMapper.xml"/>
+        <mapper resource="mappers/BandMemberMapper.xml"/>
     </mappers>
 </configuration>

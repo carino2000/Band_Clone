@@ -14,9 +14,30 @@
 </head>
 <body>
 <%@include file="/template/header.jspf" %>
-<c:forEach var="one" items="${myBands}">
-    ${one.bandName} : ${one.description}
-</c:forEach>
+
+
+<div class="main">
+    <div style="flex: 1">
+
+    </div>
+    <div style="flex: 4"> <!-- 중앙 -->
+        <div><!-- 이미지 베너 -->
+            이미지 베너
+        </div>
+        <div>
+            <c:forEach var="one" items="${myBands}">
+                ${one.bandName} : ${one.description}
+            </c:forEach>
+        </div>
+
+
+    </div>
+    <div style="flex: 1">
+
+    </div>
+
+
+</div>
 
 </body>
 </html>
