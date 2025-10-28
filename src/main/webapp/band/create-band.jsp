@@ -149,24 +149,11 @@
 
 <script>
     (function(){
-        // 토픽 목록 — 필요시 서버에서 JSTL로 주입 가능
+
         const topics = [
-            {value:'music', label:'음악'},
-            {value:'photography', label:'사진'},
-            {value:'painting', label:'그림'},
-            {value:'animal', label:'동물'},
-            {value:'health', label:'건강'},
-            {value:'trip', label:'여행'},
-            {value:'nature', label:'꽃/나무/자연'},
-            {value:'hobby', label:'취미'},
-            {value:'company', label:'회사'},
-            {value:'game', label:'게임'},
-            {value:'exercise', label:'운동'},
-            {value:'life', label:'사는얘기'},
-            {value:'gathering', label:'모임&스터디'},
-            {value:'feedback', label:'자랑&피드백'},
-            {value:'it', label:'IT'},
-            {value:'etc', label:'기타'}
+            <c:forEach var="t" items="${topics}" varStatus="st">
+            {value:'${t.code}',label:'${t.name}'}<c:if test="${!st.last}">,</c:if>
+            </c:forEach>
         ];
 
         const list = document.getElementById('topicList');

@@ -46,5 +46,17 @@ public class Band {
         return p.format(this.createdAt);
     }
 
+    public String getPrettyTopic(){
+        if(this.topic.equals("life")){
+            return "사는 얘기";
+        }else if(this.topic.equals("gathering")){
+            return "모임/스터디";
+        }else if(this.topic.equals("feedback")){
+            return "피드백";
+        }else{
+            return this.topic;
+        }
+    }
+
 
 }

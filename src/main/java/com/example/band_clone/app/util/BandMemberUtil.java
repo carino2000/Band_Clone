@@ -26,20 +26,20 @@ public class BandMemberUtil {
         }
     }
 
-    public static int insertBandMemberByBandName(String BandName, String memberId) {
-        int result = -1;
-        Map map = Map.of("BandName", BandName, "memberId", memberId);
-        try {
-            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            result = sqlSession.insert("mappers.BandMemberMapper.insertBandMemberByBandName", map);
-            sqlSession.close();
-            return result;
-
-        } catch (Exception e) {
-            System.out.println("Error in insertBandMemberByBandNo : " + e);
-            return result;
-        }
-    }
+//    public static int insertBandMemberByBandName(String BandName, String memberId) {
+//        int result = -1;
+//        Map map = Map.of("BandName", BandName, "memberId", memberId);
+//        try {
+//            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+//            result = sqlSession.insert("mappers.BandMemberMapper.insertBandMemberByBandName", map);
+//            sqlSession.close();
+//            return result;
+//
+//        } catch (Exception e) {
+//            System.out.println("Error in insertBandMemberByBandNo : " + e);
+//            return result;
+//        }
+//    }
 
 
 // -------------------------------------- select --------------------------------------

@@ -1,8 +1,10 @@
 package com.example.band_clone.app.band;
 
 import com.example.band_clone.app.util.BandUtil;
+import com.example.band_clone.app.util.TopicUtil;
 import com.example.band_clone.app.vo.Band;
 import com.example.band_clone.app.vo.Member;
+import com.example.band_clone.app.vo.Topic;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,13 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/band-create")
 public class CreateNewBandServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Topic> topics = TopicUtil.selectAllTopics();
+        req.setAttribute("topics", topics);
 
-        //req.getRequestDispatcher("/band/create-new-band.jsp").forward(req, resp);
+        //req.getRequestDispatcher("/band/not-use-create-new-band.jsp").forward(req, resp);
         req.getRequestDispatcher("/band/create-band.jsp").forward(req, resp); //gpt가 해준거ㅠㅠ
     }
 
