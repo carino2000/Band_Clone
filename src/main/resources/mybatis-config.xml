@@ -24,5 +24,6 @@
 <!--        <mapper resource="mappers/ArticleMapper.xml"/>-->
 <!--        <mapper resource="mappers/ArticleLikeMapper.xml"/>-->
         <mapper resource="mappers/MemberInfoMapper.xml"/>
+        <mapper resource="mappers/LoginHistoryMapper.xml"/>
     </mappers>
 </configuration>

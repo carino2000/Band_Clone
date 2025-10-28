@@ -21,15 +21,6 @@ public class Member {
 
     public Member() {}
 
-    public Member(String id, String email, String name, String nickname, int age, String interest) {
-        this.id = id;
-        this.email = email;
-        this.name = name;
-        this.nickname = nickname;
-        this.age = age;
-        this.interest = interest;
-    }
-
     public Member(String id, String pw, String email, boolean agree, String name, String nickname, int age) {
         this.id = id;
         this.pw = pw;
@@ -40,17 +31,6 @@ public class Member {
         this.age = age;
     }
 
-    public Member(String id, String pw, String email, boolean agree, String name, String nickname, int age, String interest, LocalDateTime joinAt) {
-        this.id = id;
-        this.pw = pw;
-        this.email = email;
-        this.agree = agree;
-        this.name = name;
-        this.nickname = nickname;
-        this.age = age;
-        this.interest = interest;
-        this.joinAt = joinAt;
-    }
 
     public Member(String id, String pw, String email, boolean agree, String name, String nickname, int age, String interest) {
         this.id = id;

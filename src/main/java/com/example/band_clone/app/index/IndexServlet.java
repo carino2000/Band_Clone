@@ -14,9 +14,8 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member m = new Member("qwer", "qwer", "qwer", true, "qwer", "qwer", 12, "qwer");
 
-        MemberUtil.insertMemberInfo(m);
+        req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 
     }
 }

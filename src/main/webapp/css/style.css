@@ -1,0 +1,115 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+.header {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fefefe;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.main{
+    width: 1280px;
+    margin: 1.5rem auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.input-100{
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    border-color: silver;
+    outline: none;
+}
+
+.signup-wrap {
+    margin: 6rem 0rem;
+    display: flex;
+    justify-content: center;
+}
+
+.signup {
+    max-width: 28rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray {
+    color: #717070
+}
+
+.mt-1 {
+    margin-top: 0.25rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.375rem;
+    border-color: #8f8f8f;
+}
+
+.signup-form > div {
+    margin-top: 1.5rem;
+}
+
+.bt-submit {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+}
+
+.bt-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.bt-submit:hover:not(:disabled) {
+    background-color: #4f4f4f;
+    color: #ffffff;
+}
+
+
+.article-item{
+    padding: 0.375rem 0;
+    border-bottom: 1px solid #000000;
+}
+
+.article-topic{
+    display: inline-block;
+    padding: 0.125rem 0.625rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    color: #8f8f8f;
+}
+
+.article-link{
+    text-decoration: none;
+    color: #3f3f3f;
+}
+
+.article-link:hover{
+    color: #79c0f8;
+}
+
+.active-page-link{
+    color: #79c0f8;
+    font-weight: bold;
+    text-decoration: none;
+}

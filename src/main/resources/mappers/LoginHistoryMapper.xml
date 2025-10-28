@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.LoginHistoryMapper">
+
+    <insert id="insertLoginHistory" parameterType="LoginHistory">
+        insert into loginHistory(loginId, loginIp) values(#{loginId},#{loginIp})
+    </insert>
+
+
+<!--    <select id="selectByLoginId" parameterType="string" resultType="LoginUser">-->
+<!--        select * from loginHistory where loginId=#{id} order by loginAt desc-->
+<!--    </select>-->
+<!--    <select id="selectByLoginIdAndPage" parameterType="map" resultType="LoginUser">-->
+<!--        select * from loginHistory where loginId=#{id} order by loginAt desc limit 20 offset #{offset}-->
+<!--    </select>-->
+<!--    -->
+
+<!--    <delete id="deleteLoginHistoryById" parameterType="string">-->
+<!--        delete from loginHistory where loginId=#{id}-->
+<!--    </delete>-->
+
+
+</mapper>
