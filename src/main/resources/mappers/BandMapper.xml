@@ -5,13 +5,13 @@
 <mapper namespace="mappers.BandMapper">
 
     <insert id="createNewBand" parameterType="Band" useGeneratedKeys="true" keyProperty="no">
-        insert into band (bandName, description, isPrivate, topic, masterId) values(#{bandName}, #{description}, #{isPrivate}, #{topic}, #{masterId});
+        insert into band (name, description, isPrivate, topic, masterId) values(#{name}, #{description}, #{isPrivate}, #{topic}, #{masterId});
     </insert>
 
 
 
     <select id="selectMyBandsById" parameterType="string" resultType="Band">
-        select * from bandMember join band on bandMember.bandNo = band.no where bandMember.memberId=#{id};
+        select * from bandMember join band on bandMember.bandNo = band.no where bandMember.memberId=#{id} order by no desc;
     </select>
 
 

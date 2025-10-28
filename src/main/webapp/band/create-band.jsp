@@ -97,9 +97,9 @@
 
         <form class="signup-form" action="/band-create" method="post">
             <div>
-                <label for="bandName"><small>밴드 이름</small></label>
+                <label for="name"><small>밴드 이름</small></label>
                 <div class="mt-1">
-                    <input type="text" class="input" name="bandName" id="bandName" placeholder="밴드 이름 입력" required autofocus/>
+                    <input type="text" class="input" name="name" id="name" placeholder="밴드 이름 입력" required autofocus/>
                 </div>
             </div>
 
