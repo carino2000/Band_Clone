@@ -27,6 +27,18 @@
         <div>
             <span>${band.name}</span>
         </div>
+
+        <div>
+            <form action="/band/new-article" method="post">
+                <input type="hidden" value="${band.no}" name="bandNo"/>
+                <div>
+                    <textarea name="content" id="content" placeholder="새로운 소식을 남겨보세요."></textarea>
+                </div>
+                <button>게시</button>
+            </form>
+        </div>
+
+
         <div>
             <c:forEach items="${articles}" var="one">
                 <div>
@@ -40,16 +52,18 @@
                 </div>
                 <div>
                     <c:if test="${auth}">
-                        <p>${member.nickname}님의 생각을 남겨주세요</p>
+                        <p>${member.nickname}님의 의견을 남겨주세요</p>
                     </c:if>
 
-                    <form action="/band" method="post">
-                        <input type="text" name="comment" id="comment" class="input" style="width: 500px"
-                               placeholder="댓글을 남겨주세요">
-                        <input type="hidden" name="articleNo" value="${one.idx}">
-                        <input type="hidden" name="bandNo" value="${band.no}">
-                        <button onclick="reactionHandle(${auth})">작성하기</button>
-                    </form>
+                    <div>
+                        <form action="/band" method="post">
+                            <input type="text" name="comment" id="comment" class="input" style="width: 500px"
+                                   placeholder="댓글을 남겨주세요">
+                            <input type="hidden" name="articleNo" value="${one.idx}">
+                            <input type="hidden" name="bandNo" value="${band.no}">
+                            <button onclick="reactionHandle(${auth})">작성하기</button>
+                        </form>
+                    </div>
                 </div>
                 <div>
                     <ul>

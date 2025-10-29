@@ -39,7 +39,7 @@
     <script>
         function logoutConfirm() {
             if (window.confirm("로그아웃 하시겠습니까?")) {
-                window.alert("감사합니다!\n안녕히가십시오")
+                window.alert("감사합니다!\n안녕히가세요")
                 location.href = '/log-out';
             }
         }
