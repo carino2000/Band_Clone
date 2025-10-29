@@ -29,9 +29,11 @@ public class BandServlet extends HttpServlet {
         } else { // 밴드 번호 받아서 해당 밴드 페이지 출력
             Band band = BandUtil.selectBandByNo(no);
             List<Article> articles = ArticleUtil.selectAllArticleByBandNo(no);
+            if(articles.isEmpty()){
+                articles = null;
+            }
 
 
-            System.out.println(articles.getFirst().getArticleComments().size());
             req.setAttribute("member", m);
             req.setAttribute("band", band);
             req.setAttribute("articles", articles);

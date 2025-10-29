@@ -53,9 +53,7 @@
                     <div style="display: flex; justify-content: space-between">
                         <div>
                             <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
-                                <span class="article-topic text-gray">${topic}
-<%--                                    <c:if test="${!st.last}"> |</c:if>--%>
-                                </span>
+                                <span class="article-topic text-gray">${topic}</span>
                             </c:forEach>
                             <span>${one.masterId}님의 밴드</span>
                             <span>&middot; <small>${one.prettyCreatedAt}에 창설됨</small></span>

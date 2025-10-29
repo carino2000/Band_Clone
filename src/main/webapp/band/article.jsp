@@ -25,7 +25,7 @@
             이미지 베너
         </div>
         <div>
-            <span>${band.name}</span>
+            <span>${band.name} 밴드에 오신걸 환영합니다!</span>
         </div>
 
         <div>
@@ -40,39 +40,47 @@
 
 
         <div>
-            <c:forEach items="${articles}" var="one">
-                <div>
-                    <span>${one.writerId}</span>
-                    <span>${one.prettyWroteAt}</span>
-                </div>
-                <div class="article-item">
-                    <div>
-                        <span style="font-size: 1.1rem; font-weight: 500"><c:out value="${one.content}"/> </span>
-                    </div>
-                </div>
-                <div>
-                    <c:if test="${auth}">
-                        <p>${member.nickname}님의 의견을 남겨주세요</p>
-                    </c:if>
+            <c:choose>
+                <c:when test="${articles == null}">
+                    <h2>아직 게시글이 없어요! 첫 게시물을 작성해주세요</h2>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${articles}" var="one">
+                        <div>
+                            <span>${one.writerId}</span>
+                            <span>${one.prettyWroteAt}</span>
+                        </div>
+                        <div class="article-item">
+                            <div>
+                                <span style="font-size: 1.1rem; font-weight: 500"><c:out value="${one.content}"/> </span>
+                            </div>
+                        </div>
+                        <div>
+                            <c:if test="${auth}">
+                                <p>${member.nickname}님의 의견을 남겨주세요</p>
+                            </c:if>
 
-                    <div>
-                        <form action="/band" method="post">
-                            <input type="text" name="comment" id="comment" class="input" style="width: 500px"
-                                   placeholder="댓글을 남겨주세요">
-                            <input type="hidden" name="articleNo" value="${one.idx}">
-                            <input type="hidden" name="bandNo" value="${band.no}">
-                            <button onclick="reactionHandle(${auth})">작성하기</button>
-                        </form>
-                    </div>
-                </div>
-                <div>
-                    <ul>
-                        <c:forEach items="${one.articleComments}" var="c">
-                            <li>${c.writerId} : ${c.comment} - (${c.prettyWritingTime})</li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </c:forEach>
+                            <div>
+                                <form action="/band" method="post">
+                                    <input type="text" name="comment" id="comment" class="input" style="width: 500px"
+                                           placeholder="댓글을 남겨주세요">
+                                    <input type="hidden" name="articleNo" value="${one.idx}">
+                                    <input type="hidden" name="bandNo" value="${band.no}">
+                                    <button onclick="reactionHandle(${auth})">작성하기</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <ul>
+                                <c:forEach items="${one.articleComments}" var="c">
+                                    <li>${c.writerId} : ${c.comment} - (${c.prettyWritingTime})</li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+
         </div>
 
 

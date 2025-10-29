@@ -46,14 +46,19 @@ public class ArticleUtil {
         try {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
             List<Article> list = sqlSession.selectList("mappers.ArticleMapper.selectAllArticleByBandNo", bandNo);
-            List<Article> returnList = new ArrayList<Article>();
-            for (Article article : list) {
-                List<ArticleComment> articleComments = selectArticleCommentsByArticleIdx(article.getIdx());
-                article.setArticleComments(articleComments);
-                returnList.add(article);
+            if(list == null){
+                sqlSession.close();
+                return new ArrayList<Article>(0);
+            }else{
+                List<Article> returnList = new ArrayList<Article>();
+                for (Article article : list) {
+                    List<ArticleComment> articleComments = selectArticleCommentsByArticleIdx(article.getIdx());
+                    article.setArticleComments(articleComments);
+                    returnList.add(article);
+                }
+                sqlSession.close();
+                return returnList;
             }
-            sqlSession.close();
-            return returnList;
         } catch (Exception e) {
             System.out.println("Error in selectAllArticleByBandNo : " + e);
             return null;
