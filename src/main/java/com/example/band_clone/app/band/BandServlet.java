@@ -19,11 +19,8 @@ import java.util.List;
 public class BandServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member m = (req.getSession().getAttribute("logonUser") == null ? null : (Member) req.getSession().getAttribute("logonUser"));
-        if (m == null) {
-            resp.sendRedirect("/log-in");
-            return;
-        }
+        Member m = (Member) (req.getSession().getAttribute("logonUser"));
+
         int no = req.getParameter("no") == null ? -1 : Integer.parseInt(req.getParameter("no"));
 
         if (no == -1) {
@@ -40,16 +37,11 @@ public class BandServlet extends HttpServlet {
             req.setAttribute("articles", articles);
             req.getRequestDispatcher("/band/article.jsp").forward(req, resp);
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member m = (req.getSession().getAttribute("logonUser") == null ? null : (Member) req.getSession().getAttribute("logonUser"));
-        if (m == null) {
-            resp.sendRedirect("/log-in");
-            return;
-        }
+        Member m = (Member) (req.getSession().getAttribute("logonUser"));
 
         int no = req.getParameter("bandNo") == null ? -1 : Integer.parseInt(req.getParameter("bandNo"));
         int articleNo = req.getParameter("articleNo") == null ? -1 : Integer.parseInt(req.getParameter("articleNo"));

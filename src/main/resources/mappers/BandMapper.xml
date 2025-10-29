@@ -10,6 +10,9 @@
 
 
 
+    <select id="selectAllBandsExceptMyBands" resultType="Band" parameterType="string">
+        select * from band where no not in (select bandNo from bandMember where memberId=#{id});
+    </select>
     <select id="selectMyBandsById" parameterType="string" resultType="Band">
         select * from bandMember join band on bandMember.bandNo = band.no where bandMember.memberId=#{id} order by no desc;
     </select>

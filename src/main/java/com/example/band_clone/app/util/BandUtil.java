@@ -9,8 +9,6 @@ import java.util.List;
 public class BandUtil {
 
 
-
-
 // -------------------------------------- insert --------------------------------------
 
     public static int createNewBand(Band band) {
@@ -27,8 +25,6 @@ public class BandUtil {
             return result;
         }
     }
-
-
 
 
 // -------------------------------------- select --------------------------------------
@@ -57,9 +53,17 @@ public class BandUtil {
         }
     }
 
-
-
-
+    public static List<Band> selectAllBandsExceptMyBands(String id) {
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            List<Band> list = sqlSession.selectList("mappers.BandMapper.selectAllBandsExceptMyBands", id);
+            sqlSession.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectAllBandsExceptMyBands : " + e);
+            return null;
+        }
+    }
 
 
 // -------------------------------------- delete --------------------------------------

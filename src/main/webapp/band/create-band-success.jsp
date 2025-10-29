@@ -56,7 +56,7 @@
     <div class="signup-success">
         <div>
             <div class="text-center">
-                <img src="/images/check.svg" alt="체크 아이콘" width="140" height="140">
+                <img src="/static/images/check.svg" alt="체크 아이콘" width="140" height="140">
             </div>
             <div class="text-center">
                 <h2>

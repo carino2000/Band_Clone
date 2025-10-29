@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>band main</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
 </head>
 <body>
 <%@include file="/template/header.jspf" %>

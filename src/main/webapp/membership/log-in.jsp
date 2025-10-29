@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>커뮤니티</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
 </head>
 <body>
 <div class="signup-wrap">

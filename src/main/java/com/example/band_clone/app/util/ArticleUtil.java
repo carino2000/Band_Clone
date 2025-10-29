@@ -26,6 +26,19 @@ public class ArticleUtil {
     }
 
 
+    public static int insertNewArticleByBandNo(Article article) {
+        int result = -1;
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            result = sqlSession.insert("mappers.ArticleMapper.insertNewArticleByBandNo", article);
+            sqlSession.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in insertNewArticleByBandNo : " + e);
+            return result;
+        }
+    }
+
 
     // -------------------------------------- select --------------------------------------
 
@@ -34,7 +47,7 @@ public class ArticleUtil {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
             List<Article> list = sqlSession.selectList("mappers.ArticleMapper.selectAllArticleByBandNo", bandNo);
             List<Article> returnList = new ArrayList<Article>();
-            for(Article article : list){
+            for (Article article : list) {
                 List<ArticleComment> articleComments = selectArticleCommentsByArticleIdx(article.getIdx());
                 article.setArticleComments(articleComments);
                 returnList.add(article);

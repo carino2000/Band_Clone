@@ -27,11 +27,7 @@ public class CreateNewBandServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member m = (req.getSession().getAttribute("logonUser") == null ? null : (Member) req.getSession().getAttribute("logonUser"));
-        if (m == null) {
-            resp.sendRedirect("/log-in");
-            return;
-        }
+        Member m = (Member) (req.getSession().getAttribute("logonUser"));
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");

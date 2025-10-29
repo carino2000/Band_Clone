@@ -16,15 +16,13 @@ import java.util.List;
 public class BandMainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member m = (req.getSession().getAttribute("logonUser") == null ? null : (Member) req.getSession().getAttribute("logonUser"));
-        if (m == null) {
-            resp.sendRedirect("/log-in");
-            return;
-        }
+        Member m = (Member) (req.getSession().getAttribute("logonUser"));
 
-
+        List<Band> otherBands = BandUtil.selectAllBandsExceptMyBands(m.getId());
         List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
+
         req.setAttribute("myBands", myBands);
+        req.setAttribute("otherBands", otherBands);
         req.getRequestDispatcher("/band/main.jsp").forward(req, resp);
 
 

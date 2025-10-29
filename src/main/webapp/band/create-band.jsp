@@ -13,7 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>sign-up</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
     <style>
         /* ---------- 기본 레이아웃(간단) ---------- */
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif; background: #fff; color: #111; margin: 0; padding: 18px; }
@@ -137,7 +137,7 @@
             </div>
 
             <div class="text-gray mt-1">
-                밴드 공개 설정을 선택하시면 밴드 맴버가 아닌 사람들에게도 게시글이 보여집니다.
+                밴드 비공개 설정을 선택하시면 밴드 맴버가 아닌 사람들에게는 게시글이 보이지 않습니다.
             </div>
 
             <div>

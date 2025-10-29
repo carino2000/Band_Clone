@@ -7,6 +7,9 @@
     <insert id="insertCommentByArticleNo" parameterType="ArticleComment">
         insert into articleComment(articleNo, writerId, comment) values(#{articleNo}, #{writerId}, #{comment})
     </insert>
+    <insert id="insertNewArticleByBandNo" parameterType="Article">
+        insert into article(bandNo, writerId, content) values(#{bandNo}, #{writerId}, #{content})
+    </insert>
 
 
     <select id="selectAllArticleByBandNo" parameterType="int" resultType="Article">

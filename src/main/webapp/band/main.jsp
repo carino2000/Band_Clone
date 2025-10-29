@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>band main</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
 </head>
 <body>
 <%@include file="/template/header.jspf" %>
@@ -45,24 +45,29 @@
                     </div>
                 </div>
             </c:forEach>
-<%--            <div style="padding: 1.5rem 0; margin-top: 2rem; text-align: center">--%>
-<%--                <form action="/community">--%>
-<%--                    <input type="hidden" name="keyword" value="${keyword}">--%>
-<%--                    <c:forEach var="i" begin="1" end="${maxPage}">--%>
-<%--                        <button--%>
-<%--                                type="submit"--%>
-<%--                                name="page"--%>
-<%--                                value="${i}"--%>
-<%--                                class=${i == currentPage ? 'active-page-link' : ''}>${i}</button>--%>
-<%--                    </c:forEach>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div>--%>
-<%--                <form action="/band-serch">--%>
-<%--                    <input type="hidden" value="${keyword}"/>--%>
-<%--                    <input type="text" name="keyword" class="input" style="width: 200px" placeholder="커뮤니티 내에서 검색">--%>
-<%--                </form>--%>
-<%--            </div>--%>
+        </div>
+        <div>
+            ----------------- 전체 밴드 노출 -----------------
+            <c:forEach items="${otherBands}" var="one">
+                <div class="article-item">
+                    <div style="display: flex; justify-content: space-between">
+                        <div>
+                            <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
+                                <span class="article-topic text-gray">${topic}
+<%--                                    <c:if test="${!st.last}"> |</c:if>--%>
+                                </span>
+                            </c:forEach>
+                            <span>${one.masterId}님의 밴드</span>
+                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨</small></span>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/band?no=${one.no}" class="article-link">
+                            <span style="font-size: 1.1rem; font-weight: 500"><c:out value="${one.name}"/> </span>
+                        </a>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
 
 
@@ -70,7 +75,6 @@
     <div style="flex: 1">
 
     </div>
-
 
 </div>
 
