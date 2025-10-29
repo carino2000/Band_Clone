@@ -45,24 +45,24 @@
                     </div>
                 </div>
             </c:forEach>
-            <%--            <div style="padding: 1.5rem 0; margin-top: 2rem; text-align: center">--%>
-            <%--                <form action="/community">--%>
-            <%--                    <input type="hidden" name="keyword" value="${keyword}">--%>
-            <%--                    <c:forEach var="i" begin="1" end="${maxPage}">--%>
-            <%--                        <button--%>
-            <%--                                type="submit"--%>
-            <%--                                name="page"--%>
-            <%--                                value="${i}"--%>
-            <%--                                class=${i == currentPage ? 'active-page-link' : ''}>${i}</button>--%>
-            <%--                    </c:forEach>--%>
-            <%--                </form>--%>
-            <%--            </div>--%>
-            <%--            <div>--%>
-            <%--                <form action="/community">--%>
-            <%--                    <input type="hidden" value="${keyword}"/>--%>
-            <%--                    <input type="text" name="keyword" class="input" style="width: 200px" placeholder="커뮤니티 내에서 검색">--%>
-            <%--                </form>--%>
-            <%--            </div>--%>
+<%--            <div style="padding: 1.5rem 0; margin-top: 2rem; text-align: center">--%>
+<%--                <form action="/community">--%>
+<%--                    <input type="hidden" name="keyword" value="${keyword}">--%>
+<%--                    <c:forEach var="i" begin="1" end="${maxPage}">--%>
+<%--                        <button--%>
+<%--                                type="submit"--%>
+<%--                                name="page"--%>
+<%--                                value="${i}"--%>
+<%--                                class=${i == currentPage ? 'active-page-link' : ''}>${i}</button>--%>
+<%--                    </c:forEach>--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--            <div>--%>
+<%--                <form action="/band-serch">--%>
+<%--                    <input type="hidden" value="${keyword}"/>--%>
+<%--                    <input type="text" name="keyword" class="input" style="width: 200px" placeholder="커뮤니티 내에서 검색">--%>
+<%--                </form>--%>
+<%--            </div>--%>
         </div>
 
 

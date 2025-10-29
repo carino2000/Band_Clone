@@ -13,6 +13,9 @@
     <select id="selectMyBandsById" parameterType="string" resultType="Band">
         select * from bandMember join band on bandMember.bandNo = band.no where bandMember.memberId=#{id} order by no desc;
     </select>
+    <select id="selectBandByNo" parameterType="int" resultType="Band">
+        select * from band where no=#{no}
+    </select>
 
 
 

@@ -23,5 +23,6 @@
         <mapper resource="mappers/BandMapper.xml"/>
         <mapper resource="mappers/BandMemberMapper.xml"/>
         <mapper resource="mappers/TopicMapper.xml"/>
+        <mapper resource="mappers/ArticleMapper.xml"/>
     </mappers>
 </configuration>

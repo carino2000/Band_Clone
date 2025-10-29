@@ -22,6 +22,7 @@ public class BandMainServlet extends HttpServlet {
             return;
         }
 
+
         List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
         req.setAttribute("myBands", myBands);
         req.getRequestDispatcher("/band/main.jsp").forward(req, resp);

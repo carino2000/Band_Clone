@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.ArticleMapper">
+
+    <insert id="insertCommentByArticleNo" parameterType="ArticleComment">
+        insert into articleComment(articleNo, writerId, comment) values(#{articleNo}, #{writerId}, #{comment})
+    </insert>
+
+
+    <select id="selectAllArticleByBandNo" parameterType="int" resultType="Article">
+        select * from article where bandNo=#{no} order by wroteAt desc
+    </select>
+    <select id="selectArticleCommentsByArticleIdx" parameterType="int" resultType="ArticleComment">
+        select * from articleComment where articleNo=#{articleNo} order by writingTime desc
+    </select>
+
+
+
+</mapper>

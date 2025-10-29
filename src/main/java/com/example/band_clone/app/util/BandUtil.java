@@ -45,6 +45,20 @@ public class BandUtil {
         }
     }
 
+    public static Band selectBandByNo(int no) {
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            Band band = sqlSession.selectOne("mappers.BandMapper.selectBandByNo", no);
+            sqlSession.close();
+            return band;
+        } catch (Exception e) {
+            System.out.println("Error in selectBandByNo : " + e);
+            return null;
+        }
+    }
+
+
+
 
 
 
