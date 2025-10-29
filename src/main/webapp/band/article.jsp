@@ -41,8 +41,11 @@
 
         <div>
             <c:choose>
-                <c:when test="${articles == null}">
-                    <h2>아직 게시글이 없어요! 첫 게시물을 작성해주세요</h2>
+                <c:when test="${isPrivate && isNotMember}">
+                    <h2>비공개 밴드입니다! 게시글을 확인하시려면 ${band.name} 밴드에 가입해주세요</h2>
+                </c:when>
+                <c:when test="${articleNotExists}">
+                    <h2>아직 게시글이 없어요!</h2>
                 </c:when>
                 <c:otherwise>
                     <c:forEach items="${articles}" var="one">

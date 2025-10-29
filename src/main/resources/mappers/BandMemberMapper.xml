@@ -12,6 +12,10 @@
 <!--    </insert>-->
 
 
+    <select id="selectMemberByBandNo" parameterType="int" resultType="Band">
+        select * from bandMember where bandNo=#{bandNo}
+    </select>
+
 
 
 </mapper>

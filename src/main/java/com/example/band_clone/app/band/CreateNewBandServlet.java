@@ -32,7 +32,7 @@ public class CreateNewBandServlet extends HttpServlet {
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         String[] topics = req.getParameterValues("topic");
-        boolean isPrivate = req.getParameter("isPrivate") == null;
+        boolean isPrivate = Boolean.parseBoolean(req.getParameter("isPrivate"));
 
         String topic = "";
         for (String t : topics) {

@@ -44,6 +44,20 @@ public class BandMemberUtil {
 
 // -------------------------------------- select --------------------------------------
 
+    public static List<Band> selectMemberByBandNo(int bandNo) {
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            List<Band> list = sqlSession.selectList("mappers.BandMemberMapper.selectMemberByBandNo", bandNo);
+            sqlSession.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectMemberByBandNo : " + e);
+            return null;
+        }
+    }
+
+
+
 
 // -------------------------------------- delete --------------------------------------
 
