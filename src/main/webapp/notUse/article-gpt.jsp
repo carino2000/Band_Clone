@@ -63,7 +63,7 @@
         <div style="background:var(--card);padding:12px;border-radius:10px;box-shadow:var(--shadow);border:1px solid rgba(15,23,42,0.04);position:sticky;top:20px">
             <h3 style="margin:0 0 8px 0">밴드 정보</h3>
             <p style="margin:0;font-weight:700">${band.name}</p>
-            <p style="margin:6px 0 0 0;color:var(--muted)">${band.topic}</p>
+            <span class="article-topic text-gray" style="margin:6px 0 0 0;color:var(--muted)">${band.prettyTopic}</span>
             <a href="/band/join?bandNo=${band.no}" class="btn ghost" style="display:inline-block;margin-top:10px">가입 신청</a>
         </div>
     </div>

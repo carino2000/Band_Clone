@@ -86,6 +86,7 @@
     </style>
 </head>
 <body>
+<%@include file="/template/header.jspf" %>
 <div class="signup-wrap">
     <div class="signup">
         <a href="/">로고</a>

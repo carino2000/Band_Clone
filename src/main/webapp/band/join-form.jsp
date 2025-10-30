@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@include file="/template/header.jspf" %>
+
 <div class="signup-wrap">
     <div class="signup">
         <h2 class="text-center">${band.name} 밴드의 가입 신청 폼</h2>

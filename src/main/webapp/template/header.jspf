@@ -24,7 +24,7 @@
                         onclick="location.href='/my/notice'">
                     <c:if test="${noticeCnt !=0}">
                     <span class="alarm-dot">
-                        ${noticeCnt}
+                            ${noticeCnt}
                     </span></c:if>
                 </button>
 
