@@ -20,7 +20,14 @@
             <div>
                     ${member.id}님
                 <button onclick="location.href=''">내 정보</button>
-                <button onclick="location.href='/my/notice'">알림 ${noticeCnt}건</button>
+                <button class="alarm-bt"
+                        onclick="location.href='/my/notice'">
+                    <c:if test="${noticeCnt !=0}">
+                    <span class="alarm-dot">
+                        ${noticeCnt}
+                    </span></c:if>
+                </button>
+
                 <button>설정</button>
                 <br>
                 <button onclick="logoutConfirm()">로그아웃</button>

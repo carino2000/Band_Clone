@@ -112,3 +112,27 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
+/*  header css  */
+.alarm-bt {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    background-color: white;
+    position: relative;
+    cursor : pointer;
+}
+.alarm-bt:hover {
+    opacity: 0.7;
+}
+.alarm-dot {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    display: inline-block;
+    background-color: red;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 1rem;
+    font-size: x-small;
+    color: white;
+}
