@@ -3,6 +3,8 @@ package com.example.band_clone.app.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class BandMember {
@@ -12,6 +14,9 @@ public class BandMember {
     String memberNickname;
     boolean isApproved;
     String greeting;
+    LocalDateTime requestAt;
+
+    String bandName; // join 용
 
     public BandMember() {}
 

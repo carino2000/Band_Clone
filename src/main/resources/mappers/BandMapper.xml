@@ -11,7 +11,7 @@
 
 
     <select id="selectAllBandsExceptMyBands" resultType="Band" parameterType="string">
-        select * from band where no not in (select bandNo from bandMember where memberId=#{id});
+        select * from band where no not in (select bandNo from bandMember where memberId=#{id}) order by no desc;
     </select>
     <select id="selectJoinedBandsById" parameterType="string" resultType="Band">
         select * from bandMember join band on bandMember.bandNo = band.no where bandMember.memberId=#{id} and band.masterId not in (#{id}) order by no desc;

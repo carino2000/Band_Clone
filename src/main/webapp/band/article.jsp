@@ -66,13 +66,13 @@
                             <c:if test="${!isNotMember}">
                                 <p>${member.nickname}님의 의견을 남겨주세요</p>
                                 <div>
-                                    <form action="/band" method="post">
+                                    <form action="/band" method="post" id="newComment">
                                         <input type="text" name="comment" id="comment" class="input"
                                                style="width: 500px"
                                                placeholder="댓글을 남겨주세요">
                                         <input type="hidden" name="articleNo" value="${one.idx}">
                                         <input type="hidden" name="bandNo" value="${band.no}">
-                                        <button type="button" onclick="reactionHandle(${isNotMember})">작성하기</button>
+                                        <button type="button" onclick="commentReactionHandle(${isNotMember})">작성하기</button>
                                     </form>
                                 </div>
                             </c:if>
@@ -106,6 +106,16 @@
             }
         } else {
             document.getElementById("createNewArticle").submit();
+        }
+    }
+
+    function commentReactionHandle(isNotMember) {
+        if (isNotMember) {
+            if (window.confirm("밴드 가입이 필요한 기능입니다.\n밴드 가입 페이지로 이동하시겠습니까?")) {
+                location.href = "/band/join?bandNo=${band.no}";
+            }
+        } else {
+            document.getElementById("newComment").submit();
         }
     }
 </script>

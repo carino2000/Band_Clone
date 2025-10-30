@@ -8,7 +8,8 @@
         insert into bandMember (bandNo, memberId) values(#{bandNo}, #{memberId});
     </insert>
     <insert id="insertBandMemberByBandMember" parameterType="BandMember">
-        insert into bandMember(bandNo, memberId, memberNickname, isApproved, greeting) values(#{bandNo}, #{memberId}, #{memberNickname}, #{isApproved}, #{greeting});
+        insert into bandMember(bandNo, memberId, memberNickname, isApproved, greeting) values(#{bandNo}, #{memberId},
+        #{memberNickname}, #{isApproved}, #{greeting});
     </insert>
 
 
@@ -18,7 +19,26 @@
     <select id="selectBandMemberByBandNo" parameterType="int" resultType="BandMember">
         select * from bandMember where bandNo=#{bandNo}
     </select>
+    <select id="countMyNoticeById" parameterType="string" resultType="int">
+        select count(*) from bandMember join band on bandMember.bandNo = band.no where bandMember.isApproved=false and
+        band.masterId=#{id}
+    </select>
+    <select id="selectAllRequest" parameterType="string" resultType="BandMember">
+        select
+        bandMember.bandNo,
+        bandMember.memberId,
+        bandMember.memberNickname,
+        bandMember.isApproved,
+        bandMember.greeting,
+        bandMember.requestAt,
+        band.name as bandName
+        from bandMember join band on bandMember.bandNo = band.no
+        where bandMember.isApproved=false and band.masterId='master';
+    </select>
 
+    <update id="updateApprovedBandMember" parameterType="map">
+        update bandMember set isApproved=true where bandNo=#{bandNo} and memberId=#{id} and isApproved=false;
+    </update>
 
 
 </mapper>
