@@ -21,10 +21,11 @@ public class Band {
     String masterId;
     LocalDateTime createdAt;
 
-    // 아래는 bandMember 테이블 사용할 때
+    // 아래는 bandMember 테이블 같이 사용할 때
     int idx;
     int bandNo;
     String memberId;
+    boolean approved;
 
     public Band() {
     }

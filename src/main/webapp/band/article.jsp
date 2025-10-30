@@ -29,12 +29,12 @@
         </div>
 
         <div>
-            <form action="/band/new-article" method="post">
+            <form action="/band/new-article" method="post" id="createNewArticle">
                 <input type="hidden" value="${band.no}" name="bandNo"/>
                 <div>
                     <textarea name="content" id="content" placeholder="새로운 소식을 남겨보세요."></textarea>
                 </div>
-                <button>게시</button>
+                <button type="button" onclick="reactionHandle(${isNotMember})">게시</button>
             </form>
         </div>
 
@@ -43,6 +43,9 @@
             <c:choose>
                 <c:when test="${isPrivate && isNotMember}">
                     <h2>비공개 밴드입니다! 게시글을 확인하시려면 ${band.name} 밴드에 가입해주세요</h2>
+                </c:when>
+                <c:when test="${isPrivate && !isApproved}">
+                    <h2>아직 밴드 맴버가 아닙니다! 밴드 마스터가 신청을 수리할 때까지 기다려주세요</h2>
                 </c:when>
                 <c:when test="${articleNotExists}">
                     <h2>아직 게시글이 없어요!</h2>
@@ -55,23 +58,24 @@
                         </div>
                         <div class="article-item">
                             <div>
-                                <span style="font-size: 1.1rem; font-weight: 500"><c:out value="${one.content}"/> </span>
+                                <span style="font-size: 1.1rem; font-weight: 500"><c:out
+                                        value="${one.content}"/> </span>
                             </div>
                         </div>
                         <div>
-                            <c:if test="${auth}">
+                            <c:if test="${!isNotMember}">
                                 <p>${member.nickname}님의 의견을 남겨주세요</p>
+                                <div>
+                                    <form action="/band" method="post">
+                                        <input type="text" name="comment" id="comment" class="input"
+                                               style="width: 500px"
+                                               placeholder="댓글을 남겨주세요">
+                                        <input type="hidden" name="articleNo" value="${one.idx}">
+                                        <input type="hidden" name="bandNo" value="${band.no}">
+                                        <button type="button" onclick="reactionHandle(${isNotMember})">작성하기</button>
+                                    </form>
+                                </div>
                             </c:if>
-
-                            <div>
-                                <form action="/band" method="post">
-                                    <input type="text" name="comment" id="comment" class="input" style="width: 500px"
-                                           placeholder="댓글을 남겨주세요">
-                                    <input type="hidden" name="articleNo" value="${one.idx}">
-                                    <input type="hidden" name="bandNo" value="${band.no}">
-                                    <button onclick="reactionHandle(${auth})">작성하기</button>
-                                </form>
-                            </div>
                         </div>
                         <div>
                             <ul>
@@ -92,8 +96,19 @@
 
     </div>
 
-
 </div>
+
+<script>
+    function reactionHandle(isNotMember) {
+        if (isNotMember) {
+            if (window.confirm("밴드 가입이 필요한 기능입니다.\n밴드 가입 페이지로 이동하시겠습니까?")) {
+                location.href = "/band/join?bandNo=${band.no}";
+            }
+        } else {
+            document.getElementById("createNewArticle").submit();
+        }
+    }
+</script>
 
 </body>
 </html>

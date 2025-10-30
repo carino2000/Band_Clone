@@ -1,7 +1,10 @@
 package com.example.band_clone.app.band;
 
+import com.example.band_clone.app.util.BandMemberUtil;
 import com.example.band_clone.app.util.BandUtil;
+import com.example.band_clone.app.util.MemberUtil;
 import com.example.band_clone.app.vo.Band;
+import com.example.band_clone.app.vo.BandMember;
 import com.example.band_clone.app.vo.Member;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,6 +23,10 @@ public class BandMainServlet extends HttpServlet {
 
         List<Band> otherBands = BandUtil.selectAllBandsExceptMyBands(m.getId());
         List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
+
+        for (Band b : myBands) {
+            b.setApproved(BandMemberUtil.isApprovedMember(b.getNo(), m.getId()));
+        }
 
         req.setAttribute("myBands", myBands);
         req.setAttribute("otherBands", otherBands);

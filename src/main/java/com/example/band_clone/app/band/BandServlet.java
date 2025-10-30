@@ -3,10 +3,7 @@ package com.example.band_clone.app.band;
 import com.example.band_clone.app.util.ArticleUtil;
 import com.example.band_clone.app.util.BandMemberUtil;
 import com.example.band_clone.app.util.BandUtil;
-import com.example.band_clone.app.vo.Article;
-import com.example.band_clone.app.vo.ArticleComment;
-import com.example.band_clone.app.vo.Band;
-import com.example.band_clone.app.vo.Member;
+import com.example.band_clone.app.vo.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,14 +20,15 @@ public class BandServlet extends HttpServlet {
         Member m = (Member) (req.getSession().getAttribute("logonUser"));
         boolean articleNotExists = false;
         boolean isNotMember = true;
+        boolean isApproved = false;
 
         int no = req.getParameter("no") == null ? -1 : Integer.parseInt(req.getParameter("no"));
+        Band band = BandUtil.selectBandByNo(no);
 
-        if (no == -1) {
+        if (no == -1 || band == null) {
             resp.sendRedirect("/band-main");
             return;
         }
-        Band band = BandUtil.selectBandByNo(no);
 
         List<Article> articles = ArticleUtil.selectAllArticleByBandNo(no);
 
@@ -38,14 +36,24 @@ public class BandServlet extends HttpServlet {
             articleNotExists = true;
         }
 
-        List<Band> bandMember = BandMemberUtil.selectMemberByBandNo(no);
-        for (Band b : bandMember) {
+        List<BandMember> bandMember = BandMemberUtil.selectBandMemberByBandNo(no);
+        if (bandMember == null || bandMember.isEmpty()) {
+            System.out.println("Not exist bandMember Error !!");
+            resp.sendRedirect("/band-main");
+            return;
+        }
+
+        for (BandMember b : bandMember) {
             if (b.getMemberId().equals(m.getId())) {
                 isNotMember = false;
+                if(b.isApproved())
+                    isApproved = true;
+
                 break;
             }
         }
 
+        req.setAttribute("isApproved", isApproved);
         req.setAttribute("isNotMember", isNotMember);
         req.setAttribute("isPrivate", band.getIsPrivate());
         req.setAttribute("articleNotExists", articleNotExists);

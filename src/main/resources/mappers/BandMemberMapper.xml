@@ -7,12 +7,15 @@
     <insert id="insertBandMemberByBandNo" parameterType="map">
         insert into bandMember (bandNo, memberId) values(#{bandNo}, #{memberId});
     </insert>
-<!--    <insert id="insertBandMemberByBandName" parameterType="map">-->
-<!--        insert into bandMember (BandName, memberId) values(#{BandName}, #{memberId});-->
-<!--    </insert>-->
+    <insert id="insertBandMemberByBandMember" parameterType="BandMember">
+        insert into bandMember(bandNo, memberId, memberNickname, isApproved, greeting) values(#{bandNo}, #{memberId}, #{memberNickname}, #{isApproved}, #{greeting});
+    </insert>
 
 
-    <select id="selectMemberByBandNo" parameterType="int" resultType="Band">
+    <select id="isApprovedMember" parameterType="map" resultType="boolean">
+        select bandMember.isApproved from bandMember where bandNo=#{bandNo} and memberId=#{id}
+    </select>
+    <select id="selectBandMemberByBandNo" parameterType="int" resultType="BandMember">
         select * from bandMember where bandNo=#{bandNo}
     </select>
 

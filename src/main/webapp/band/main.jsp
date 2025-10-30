@@ -35,7 +35,7 @@
                                 </span>
                             </c:forEach>
                             <span>${one.masterId}님의 밴드</span>
-                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨</small></span>
+                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨 <c:if test="${!one.approved}">(가입 승인 대기 중)</c:if> </small></span>
                         </div>
                     </div>
                     <div>
