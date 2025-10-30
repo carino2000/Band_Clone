@@ -12,20 +12,6 @@ public class BandMemberUtil {
 
 // -------------------------------------- insert --------------------------------------
 
-    public static int insertBandMemberByBandNo(int bandNo, String memberId) {
-        int result = -1;
-        Map map = Map.of("bandNo", bandNo, "memberId", memberId);
-        try {
-            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            result = sqlSession.insert("mappers.BandMemberMapper.insertBandMemberByBandNo", map);
-            sqlSession.close();
-            return result;
-
-        } catch (Exception e) {
-            System.out.println("Error in insertBandMemberByBandNo : " + e);
-            return result;
-        }
-    }
 
     public static int insertBandMemberByBandMember(BandMember bandMember) {
         int result = -1;

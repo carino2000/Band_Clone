@@ -2,9 +2,7 @@ package com.example.band_clone.app.band;
 
 import com.example.band_clone.app.util.BandMemberUtil;
 import com.example.band_clone.app.util.BandUtil;
-import com.example.band_clone.app.util.MemberUtil;
 import com.example.band_clone.app.vo.Band;
-import com.example.band_clone.app.vo.BandMember;
 import com.example.band_clone.app.vo.Member;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,13 +20,15 @@ public class BandMainServlet extends HttpServlet {
         Member m = (Member) (req.getSession().getAttribute("logonUser"));
 
         List<Band> otherBands = BandUtil.selectAllBandsExceptMyBands(m.getId());
+        List<Band> joinedBands = BandUtil.selectJoinedBandsById(m.getId());
         List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
 
-        for (Band b : myBands) {
+        for (Band b : joinedBands) {
             b.setApproved(BandMemberUtil.isApprovedMember(b.getNo(), m.getId()));
         }
 
         req.setAttribute("myBands", myBands);
+        req.setAttribute("joinedBands", joinedBands);
         req.setAttribute("otherBands", otherBands);
         req.getRequestDispatcher("/band/main.jsp").forward(req, resp);
 

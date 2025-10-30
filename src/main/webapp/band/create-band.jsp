@@ -124,6 +124,12 @@
                 <div aria-live="polite" id="selectedCount" style="margin-top:10px" class="helper">선택된 항목: <span class="count">0</span></div>
             </div>
             <!-- === 토픽 블록 끝 === -->
+            <div>
+                <label for="nickname"><small>닉네임</small></label>
+                <div class="mt-1">
+                    <input type="text" class="input" name="nickname" id="nickname" placeholder="${band.name}밴드에서만 사용하는 별명을 작성해주세요~! (공란시 기존 닉네임)"/>
+                </div>
+            </div>
 
             <!-- 체크박스: 왼쪽 정렬로 다른 input들과 동일한 흐름 -->
             <div class="form-row">

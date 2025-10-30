@@ -43,11 +43,8 @@ public class JoinBandServlet extends HttpServlet {
             return;
         }
 
-        String nickname = req.getParameter("nickname") == null ? null : req.getParameter("nickname");
+        String nickname = req.getParameter("nickname") == null ? m.getNickname() : req.getParameter("nickname");
         String greeting = req.getParameter("greeting") == null ? null : req.getParameter("greeting");
-        if (nickname == null) {
-            nickname = m.getNickname();
-        }
 
         BandMember bandMember = new BandMember(bandNo, m.getId(), nickname, false, greeting);
 

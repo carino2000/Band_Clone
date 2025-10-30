@@ -33,6 +33,8 @@ public class CreateNewBandServlet extends HttpServlet {
         String description = req.getParameter("description");
         String[] topics = req.getParameterValues("topic");
         boolean isPrivate = Boolean.parseBoolean(req.getParameter("isPrivate"));
+        String nickname = req.getParameter("nickname") == null ? m.getNickname() : req.getParameter("nickname");
+
 
         String topic = "";
         for (String t : topics) {
@@ -41,7 +43,7 @@ public class CreateNewBandServlet extends HttpServlet {
 
         Band band = new Band(name, description, isPrivate, topic, m.getId());
 
-        int result = BandUtil.createNewBand(band);
+        int result = BandUtil.createNewBand(band, nickname);
 
 
         req.setAttribute("member", m);

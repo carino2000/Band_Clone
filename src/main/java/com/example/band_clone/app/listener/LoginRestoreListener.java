@@ -2,6 +2,7 @@ package com.example.band_clone.app.listener;
 
 import com.example.band_clone.app.util.LoginHistoryUtil;
 import com.example.band_clone.app.util.MemberUtil;
+import com.example.band_clone.app.util.NotificationUtil;
 import com.example.band_clone.app.vo.LoginHistory;
 import com.example.band_clone.app.vo.Member;
 import jakarta.servlet.ServletRequestEvent;
@@ -26,7 +27,7 @@ public class LoginRestoreListener implements ServletRequestListener {
             }
         }
 
-        if (found != null) { // 로그인 유지 체크 상태
+        if (found != null) { // 로그인 유지 체크 상태 (쿠키 체크)
             String id = found.getValue();
 
             // 자동로그인 할 때 접속 로그 남기기
@@ -39,13 +40,17 @@ public class LoginRestoreListener implements ServletRequestListener {
 
         //-------------------------------------------
 
-        if(req.getSession().getAttribute("logonUser") == null){
+        if (req.getSession().getAttribute("logonUser") == null) {
             req.setAttribute("auth", false);
-        }else{
+        } else {
             req.setAttribute("auth", true);
+            Member m = (Member) req.getSession().getAttribute("logonUser");
+            int noticeCnt = NotificationUtil.countMyNoticeById(m.getId());
+
+            req.setAttribute("noticeCnt", noticeCnt);
+            req.setAttribute("member", m);
+
+
         }
-
-        req.setAttribute("member", (Member)req.getSession().getAttribute("logonUser"));
-
     }
 }

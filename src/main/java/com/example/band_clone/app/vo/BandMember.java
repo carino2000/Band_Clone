@@ -22,5 +22,12 @@ public class BandMember {
         this.isApproved = isApproved;
         this.greeting = greeting;
     }
+
+    public BandMember(int bandNo, String memberId, String memberNickname, boolean isApproved) {
+        this.bandNo = bandNo;
+        this.memberId = memberId;
+        this.memberNickname = memberNickname;
+        this.isApproved = isApproved;
+    }
 }
 

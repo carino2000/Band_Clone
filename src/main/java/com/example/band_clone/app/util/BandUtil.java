@@ -1,6 +1,7 @@
 package com.example.band_clone.app.util;
 
 import com.example.band_clone.app.vo.Band;
+import com.example.band_clone.app.vo.BandMember;
 import com.example.band_clone.app.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
@@ -11,12 +12,14 @@ public class BandUtil {
 
 // -------------------------------------- insert --------------------------------------
 
-    public static int createNewBand(Band band) {
+    public static int createNewBand(Band band, String nickname) {
         int result = -1;
         try {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
             result = sqlSession.insert("mappers.BandMapper.createNewBand", band);
-            BandMemberUtil.insertBandMemberByBandNo(band.getNo(), band.getMasterId());
+
+            BandMember bandmember = new BandMember(band.getNo(), band.getMasterId(), nickname, true);
+            BandMemberUtil.insertBandMemberByBandMember(bandmember);
             sqlSession.close();
             return result;
 
@@ -29,14 +32,14 @@ public class BandUtil {
 
 // -------------------------------------- select --------------------------------------
 
-    public static List<Band> selectMyBandsById(String id) {
+    public static List<Band> selectJoinedBandsById(String id) {
         try {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            List<Band> list = sqlSession.selectList("mappers.BandMapper.selectMyBandsById", id);
+            List<Band> list = sqlSession.selectList("mappers.BandMapper.selectJoinedBandsById", id);
             sqlSession.close();
             return list;
         } catch (Exception e) {
-            System.out.println("Error in selectMyBandsById : " + e);
+            System.out.println("Error in selectJoinedBandsById : " + e);
             return null;
         }
     }
@@ -61,6 +64,19 @@ public class BandUtil {
             return list;
         } catch (Exception e) {
             System.out.println("Error in selectAllBandsExceptMyBands : " + e);
+            return null;
+        }
+    }
+
+
+    public static List<Band> selectMyBandsById(String id) {
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            List<Band> list = sqlSession.selectList("mappers.BandMapper.selectMyBandsById", id);
+            sqlSession.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectMyBandsById : " + e);
             return null;
         }
     }
