@@ -55,7 +55,10 @@ public class Band {
         List<String> topicList = new ArrayList<String>();
 
         for (String topic : topics) {
-            switch (topic) {
+            switch (topic.toLowerCase()) {
+                case "art":
+                    topicList.add("예술");
+                    break;
                 case "music":
                     topicList.add("음악");
                     break;

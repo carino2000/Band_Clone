@@ -17,6 +17,14 @@ public class ValidateUtil {
         }
     }
 
+    public static boolean isNotValidEmail(String email) {
+        if (email.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public static boolean isNotValidId(String id) {
         if (id.matches("[a-zA-Z0-9!@#$%^&*]{4,15}")) {
             return false;
@@ -103,6 +111,10 @@ public class ValidateUtil {
             case 510:
                 System.out.println("password same");
                 mainError = "새로운 비밀번호가 기존 비밀번호와 동일합니다.";
+                break;
+            case 511:
+                System.out.println("email is Not ValidId");
+                mainError = "이메일을 규격에 맞게 작성해주세요";
                 break;
         }
         return mainError;
