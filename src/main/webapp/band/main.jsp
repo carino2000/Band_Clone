@@ -20,6 +20,14 @@
     <div style="flex: 1">
 
     </div>
+    <!-- 검색 영역 -->
+    <div style="padding: 0.5rem 0rem; text-align: center">
+        <form action="/band-main">
+            <input type="text" name="keyword" class="input" style="width: 200px"
+                   placeholder="커뮤니티 내에서 검색"
+                   value="${keyword}"/>
+        </form>
+    </div>
     <div style="flex: 4"> <!-- 중앙 -->
         <div><!-- 이미지 베너 -->
 
