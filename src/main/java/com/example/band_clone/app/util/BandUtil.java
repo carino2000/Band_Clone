@@ -97,6 +97,25 @@ public class BandUtil {
 
     }
 
+    /*
+       // select * from article where content like '%#{}%' order by wroteAt desc limit 5 offset 5;
+    public static List<Article> selectByKeyword(String keyword, int page) {//수정중
+        List<Article> list = null;
+        int offset = (page - 1) * 10;
+        Map map = Map.of("keyword", keyword, "offset", offset);
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            list = session.selectList("mappers.ArticleMapper.selectByKeyword", map);
+            session.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectByKeyword: " + e);
+            return null;
+        }
+
+    }
+     */
+
 
 // -------------------------------------- delete --------------------------------------
 

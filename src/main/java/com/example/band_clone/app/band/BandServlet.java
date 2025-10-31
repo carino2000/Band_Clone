@@ -22,6 +22,7 @@ public class BandServlet extends HttpServlet {
         boolean isNotMember = true;
         boolean isApproved = false;
 
+
         int no = req.getParameter("no") == null ? -1 : Integer.parseInt(req.getParameter("no"));
         Band band = BandUtil.selectBandByNo(no);
 
@@ -52,6 +53,9 @@ public class BandServlet extends HttpServlet {
                 break;
             }
         }
+
+        List<BandMember> memberList = BandMemberUtil.selectBandMemberByBandNo(band.getNo());
+
 
         req.setAttribute("isApproved", isApproved);
         req.setAttribute("isNotMember", isNotMember);
