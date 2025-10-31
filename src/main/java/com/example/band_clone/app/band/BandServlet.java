@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/band")
@@ -47,16 +48,20 @@ public class BandServlet extends HttpServlet {
         for (BandMember b : bandMember) {
             if (b.getMemberId().equals(m.getId())) {
                 isNotMember = false;
-                if(b.isApproved())
+                if (b.isApproved())
                     isApproved = true;
-
                 break;
             }
         }
 
-        List<BandMember> memberList = BandMemberUtil.selectBandMemberByBandNo(band.getNo());
+        List<BandMember> memberList = new ArrayList<BandMember>();
+        for (BandMember b : bandMember) {
+            if (b.isApproved()) {
+                memberList.add(b);
+            }
+        }
 
-
+        req.setAttribute("memberList", memberList);
         req.setAttribute("isApproved", isApproved);
         req.setAttribute("isNotMember", isNotMember);
         req.setAttribute("isPrivate", band.getIsPrivate());

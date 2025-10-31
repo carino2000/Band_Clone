@@ -17,7 +17,7 @@
         select bandMember.isApproved from bandMember where bandNo=#{bandNo} and memberId=#{id}
     </select>
     <select id="selectBandMemberByBandNo" parameterType="int" resultType="BandMember">
-        select * from bandMember where bandNo=#{bandNo}
+        select * from bandMember where bandNo=#{bandNo} order by idx asc
     </select>
     <select id="countMyNoticeById" parameterType="string" resultType="int">
         select count(*) from bandMember join band on bandMember.bandNo = band.no where bandMember.isApproved=false and
