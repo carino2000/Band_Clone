@@ -1,4 +1,4 @@
-package com.example.band_clone.app.signin;
+package com.example.band_clone.app.memberManagement.signin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,18 +27,12 @@ public class LogoutServlet extends HttpServlet {
 
         //나중에 회원탈퇴? 같은거 할 때 살리기
 
-//        if(req.getParameter("msg") != null){
-//            if(req.getParameter("msg").equals("re-login")){
-//                resp.sendRedirect("/index?msg=1");
-//                return;
-//            }else if(req.getParameter("msg").equals("deleteMember")){
-//                resp.sendRedirect("/index?msg=2");
-//                return;
-//            }else if(req.getParameter("msg").equals("profileEdit")){
-//                resp.sendRedirect("/index?msg=3");
-//                return;
-//            }
-//        }
+        if(req.getParameter("msg") != null){
+            if(req.getParameter("msg").equals("profileEdit")){
+                resp.sendRedirect("/index?msg=1");
+                return;
+            }
+        }
 
 
         resp.sendRedirect("/index");

@@ -35,7 +35,7 @@ public class MemberUtil {
             } else if (ValidateUtil.isNotValidPw(member.getPw())) {
                 result = 503; //비밀번호 조건 부적합
             }  else if(ValidateUtil.isNotValidEmail(member.getEmail())) {
-                result = 511;
+                result = 511; //이메일 부적합
             }else {
                 result = sqlSession.insert("mappers.MemberInfoMapper.insertMemberInfo", member);
             }
@@ -79,5 +79,20 @@ public class MemberUtil {
 
 
     // -------------------------------------- update --------------------------------------
+
+    public static int updateMemberInfo(Member m) {
+        int result = -1;
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            result = sqlSession.update("mappers.MemberInfoMapper.updateMemberInfo", m);
+            sqlSession.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in updateMemberInfo : " + e);
+            return result;
+        }
+    }
+
+
 
 }

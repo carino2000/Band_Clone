@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="/static/css/style.css"/>
 </head>
 <body>
+<c:choose>
+    <c:when test="${msg == 1}">
+        <script>
+            window.alert("회원 정보 수정 완료\n다시 로그인해주세요.");
+        </script>
+    </c:when>
+</c:choose>
 <%@include file="/template/header.jspf"%>
 
 </body>

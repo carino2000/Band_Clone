@@ -19,7 +19,7 @@
         <c:when test="${auth}">
             <div>
                     ${member.id}님
-                <button onclick="location.href=''">내 정보</button>
+                <button onclick="location.href='/my-page'">내 정보</button>
                 <button class="alarm-bt"
                         onclick="location.href='/my/notice'">
                     <c:if test="${noticeCnt !=0}">

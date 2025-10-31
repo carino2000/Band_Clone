@@ -1,4 +1,4 @@
-package com.example.band_clone.app.signin;
+package com.example.band_clone.app.memberManagement.signin;
 
 import com.example.band_clone.app.util.LoginHistoryUtil;
 import com.example.band_clone.app.util.MemberUtil;

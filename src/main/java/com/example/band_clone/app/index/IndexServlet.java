@@ -14,7 +14,10 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        if(req.getParameter("msg") != null){
+            int msg = Integer.parseInt(req.getParameter("msg"));
+            req.setAttribute("msg", msg);
+        }
         req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 
     }
