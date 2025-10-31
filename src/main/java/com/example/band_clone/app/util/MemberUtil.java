@@ -3,6 +3,8 @@ package com.example.band_clone.app.util;
 import com.example.band_clone.app.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.Map;
+
 
 public class MemberUtil {
 
@@ -89,6 +91,20 @@ public class MemberUtil {
             return result;
         } catch (Exception e) {
             System.out.println("Error in updateMemberInfo : " + e);
+            return result;
+        }
+    }
+
+    public static int updateMemberPw(String newPw, String id) {
+        int result = -1;
+        Map map = Map.of("newPw", newPw, "id", id);
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            result = sqlSession.update("mappers.MemberInfoMapper.updateMemberPw", map);
+            sqlSession.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in updateMemberPw : " + e);
             return result;
         }
     }

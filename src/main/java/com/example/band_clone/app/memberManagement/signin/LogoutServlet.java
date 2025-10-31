@@ -25,11 +25,13 @@ public class LogoutServlet extends HttpServlet {
         }
         req.getSession().removeAttribute("logonUser");
 
-        //나중에 회원탈퇴? 같은거 할 때 살리기
 
         if(req.getParameter("msg") != null){
             if(req.getParameter("msg").equals("profileEdit")){
                 resp.sendRedirect("/index?msg=1");
+                return;
+            }else if(req.getParameter("msg").equals("passwordEdit")){
+                resp.sendRedirect("/index?msg=2");
                 return;
             }
         }

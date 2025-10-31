@@ -20,6 +20,9 @@
     <update id="updateMemberInfo" parameterType="Member">
         update memberInfo set name=#{name}, nickname=#{nickname}, email=#{email}, agree=#{agree}, age=#{age}, interest=#{interest} where id=#{id}
     </update>
+    <update id="updateMemberPw" parameterType="map">
+        update memberInfo set pw=#{newPw} where id=#{id}
+    </update>
 
 
 

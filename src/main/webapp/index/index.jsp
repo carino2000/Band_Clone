@@ -19,6 +19,11 @@
             window.alert("회원 정보 수정 완료\n다시 로그인해주세요.");
         </script>
     </c:when>
+    <c:when test="${msg == 2}">
+        <script>
+            window.alert("비밀번호 변경 완료!\n다시 로그인해주세요.");
+        </script>
+    </c:when>
 </c:choose>
 <%@include file="/template/header.jspf"%>
 
