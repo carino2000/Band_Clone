@@ -6,6 +6,7 @@ import com.example.band_clone.app.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class BandUtil {
 
@@ -79,6 +80,21 @@ public class BandUtil {
             System.out.println("Error in selectMyBandsById : " + e);
             return null;
         }
+    }
+
+
+    public static List<Band> selectBandByKeyword(String keyword) {// 현병욱 수정중
+        List<Band> list = null;
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            list = session.selectList("", keyword);
+            session.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectBandByKeyword: " + e);
+            return null;
+        }
+
     }
 
 
