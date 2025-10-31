@@ -18,9 +18,6 @@
     <select id="selectArticleCommentsByArticleIdx" parameterType="int" resultType="ArticleComment">
         select * from articleComment where articleNo=#{articleNo} order by writingTime desc
     </select>
-    <select id="selectArticleByContent" parameterType="String" resultType="Article">
-        select content from article order by wroteAt desc
-    </select>
 
 
 

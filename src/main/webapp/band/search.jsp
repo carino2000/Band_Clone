@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: USER
@@ -24,19 +23,22 @@
     </div>
     <!-- 검색 영역 -->
     <div style="padding: 0.5rem 0rem; text-align: center">
-        <form action="/band-search">
+        <form action="/band-search" id="search-form" onsubmit="keywordConfirm(event)">
             <input type="text" name="keyword" id="keyword" class="input" style="width: 200px"
-                   placeholder="커뮤니티 내에서 검색" onkeydown="keywordConfirm(event)"
+                   placeholder="커뮤니티 내에서 검색"
                    value="${keyword}"/>
         </form>
     </div>
     <!-- 전체 보기 -->
     <div style="padding: 0.5rem 0rem">
-        <a href="/band-search"><button>전체 밴드 보기</button></a>
+        <a href="/band-search">
+            <button>전체 밴드 보기</button>
+        </a>
     </div>
     <div style="flex: 4"> <!-- 중앙 -->
         <div>
-            <p style="margin-top: 20px">----------------- ${keyword == '' ? '전체 밴드 노출' : keyword2+='에 대한 검색한 밴드 노출'} -----------------</p>
+            <p style="margin-top: 20px">----------------- ${keyword == '' ? '전체 밴드 노출' : keyword+='에 대한 검색한 밴드 노출'}
+                -----------------</p>
             <c:forEach items="${keywordBands}" var="one">
                 <div class="article-item">
                     <div style="display: flex; justify-content: space-between">
@@ -62,19 +64,26 @@
     <div style="flex: 1">
 
     </div>
-<script>
-    function keywordConfirm(event) {
-        if(event.key === "Enter") {
+    <script>
+        function keywordConfirm(event) {
+
             const keyword = document.getElementById("keyword").value.trim();
 
-            if(keyword === ""){
+            if (keyword === "") {
                 window.alert("빈칸으로 검색할 수 없습니다. 정보를 입력해주세요.");
                 event.preventDefault();
+                return;
             }
-        }
+            const regex = /^[a-zA-Z0-9가-힣]{3,}$/;
+            if (!regex.test(keyword)) {
+                window.alert("영어, 숫자, 한글 중 3글자 이상 입력해야 검색이 가능합니다.");
+                event.preventDefault();
+                return;
+            }
 
-    }
-</script>
+
+        }
+    </script>
 </div>
 
 </body>
