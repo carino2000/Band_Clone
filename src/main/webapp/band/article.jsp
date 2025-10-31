@@ -18,7 +18,19 @@
 
 <div class="main">
     <div style="flex: 1">
-
+        <span>가입된 맴버</span>
+        <div>
+            <ul>
+                <c:forEach items="${memberList}" var="m">
+                    <li>
+                        <div>
+                            <span>${m.memberId}<br/></span>
+                            <small><span>(${m.memberNickname}님)</span></small>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
     </div>
     <div style="flex: 4"> <!-- 중앙 -->
         <div><!-- 이미지 베너 -->
@@ -72,7 +84,8 @@
                                                placeholder="댓글을 남겨주세요">
                                         <input type="hidden" name="articleNo" value="${one.idx}">
                                         <input type="hidden" name="bandNo" value="${band.no}">
-                                        <button type="button" onclick="commentReactionHandle(${isNotMember})">작성하기</button>
+                                        <button type="button" onclick="commentReactionHandle(${isNotMember})">작성하기
+                                        </button>
                                     </form>
                                 </div>
                             </c:if>
