@@ -4,6 +4,9 @@ import com.example.band_clone.app.vo.Article;
 import com.example.band_clone.app.vo.ArticleComment;
 import org.apache.ibatis.session.SqlSession;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -1,5 +1,6 @@
 package com.example.band_clone.app.util;
 
+import com.example.band_clone.app.vo.Article;
 import com.example.band_clone.app.vo.Band;
 import com.example.band_clone.app.vo.BandMember;
 import com.example.band_clone.app.vo.Member;
