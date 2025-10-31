@@ -35,7 +35,7 @@ public class MemberUtil {
             } else if (ValidateUtil.isNotValidPw(member.getPw())) {
                 result = 503; //비밀번호 조건 부적합
             }  else if(ValidateUtil.isNotValidEmail(member.getEmail())) {
-                result = 504;
+                result = 511;
             }else {
                 result = sqlSession.insert("mappers.MemberInfoMapper.insertMemberInfo", member);
             }
