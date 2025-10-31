@@ -61,5 +61,6 @@ public class JoinBandServlet extends HttpServlet {
             req.getRequestDispatcher("/band/request-success.jsp").forward(req, resp);
         }
         //여기서부터 짜기
+
     }
 }
