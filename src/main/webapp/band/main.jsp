@@ -93,6 +93,27 @@
                 </div>
             </c:forEach>
         </div>
+        <div>
+            <p style="margin-top: 20px">----------------- 검색한 밴드 노출 -----------------</p>
+            <c:forEach items="${keywordBands}" var="one">
+                <div class="article-item">
+                    <div style="display: flex; justify-content: space-between">
+                        <div>
+                            <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
+                                <span class="article-topic text-gray">${topic}</span>
+                            </c:forEach>
+                            <span>${one.masterId}님의 밴드</span>
+                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨</small></span>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/band?no=${one.no}" class="article-link">
+                            <span style="font-size: 1.1rem; font-weight: 500"><c:out value="${one.name}"/> </span>
+                        </a>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
 
 
     </div>
