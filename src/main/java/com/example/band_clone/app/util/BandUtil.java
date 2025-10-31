@@ -87,7 +87,8 @@ public class BandUtil {
         List<Band> list = null;
         try {
             SqlSession session = MyBatisUtil.build().openSession(true);
-            list = session.selectList("", keyword);
+            String param = "%" + keyword + "%";
+            list = session.selectList("mappers.BandMapper.selectBandByKeyword", param);
             session.close();
             return list;
         } catch (Exception e) {
