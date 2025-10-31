@@ -20,11 +20,12 @@ public class BandMainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member m = (Member) (req.getSession().getAttribute("logonUser"));
         String keyword = req.getParameter("keyword") == null ? "" : req.getParameter("keyword");
-        List<Band> otherBands = BandUtil.selectAllBandsExceptMyBands(m.getId());
-        List<Band> joinedBands = BandUtil.selectJoinedBandsById(m.getId());
-        List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
+
         List<Band> keywordBands = BandUtil.selectBandByKeyword(keyword);
 
+        List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
+        List<Band> joinedBands = BandUtil.selectJoinedBandsById(m.getId());
+        List<Band> otherBands = BandUtil.selectAllBandsExceptMyBands(m.getId());
 
         for (Band b : joinedBands) {
             b.setApproved(BandMemberUtil.isApprovedMember(b.getNo(), m.getId()));
