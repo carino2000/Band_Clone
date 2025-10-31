@@ -26,7 +26,7 @@ public class EditPasswordServlet extends HttpServlet {
         }
 
         req.setAttribute("member", m);
-        req.getRequestDispatcher("/member/change-password.jsp").forward(req, resp);
+        req.getRequestDispatcher("/profile/change-password.jsp").forward(req, resp);
     }
 
     @Override

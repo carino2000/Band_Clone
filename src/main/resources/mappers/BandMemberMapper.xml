@@ -33,7 +33,7 @@
         bandMember.requestAt,
         band.name as bandName
         from bandMember join band on bandMember.bandNo = band.no
-        where bandMember.isApproved=false and band.masterId='master';
+        where bandMember.isApproved=false and band.masterId='master' order by requestAt desc;
     </select>
 
     <update id="updateApprovedBandMember" parameterType="map">

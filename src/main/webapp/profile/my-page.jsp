@@ -22,7 +22,6 @@
         <button onclick="location.href='/password-changes'">비밀번호 변경</button>
         <button onclick="location.href='/my-posting'">내가 쓴 글</button>
         <button onclick="location.href='/my-loginHistory'">내 로그인 이력</button>
-        <button onclick="location.href='/my-article-like'">좋아요 누른 글</button>
 
         <button id="deleteBt"onclick="deleteConfirm()">계정삭제</button>
     </div>

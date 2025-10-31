@@ -2,8 +2,10 @@ package com.example.band_clone.app.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 @Getter
 @Setter
@@ -34,5 +36,11 @@ public class BandMember {
         this.memberNickname = memberNickname;
         this.isApproved = isApproved;
     }
+
+    public String getPrettyRequestAt(){
+        PrettyTime p = new PrettyTime(Locale.KOREA);
+        return p.format(this.requestAt);
+    }
+
 }
 

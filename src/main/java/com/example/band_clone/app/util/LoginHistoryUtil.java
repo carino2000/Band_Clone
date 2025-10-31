@@ -1,9 +1,17 @@
 package com.example.band_clone.app.util;
 
 import com.example.band_clone.app.vo.LoginHistory;
+import com.example.band_clone.app.vo.Topic;
 import org.apache.ibatis.session.SqlSession;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 public class LoginHistoryUtil {
+
+
+// -------------------------------------- insert --------------------------------------
 
     public static int insertLoginHistory(LoginHistory user) {
         int result = 0;
@@ -17,6 +25,46 @@ public class LoginHistoryUtil {
             return result;
         }
     }
+
+// -------------------------------------- select --------------------------------------
+
+
+    public static List<LoginHistory> selectHistoryById(String id) {
+        List<LoginHistory> list = null;
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            list = session.selectList("mappers.LoginHistoryMapper.selectByLoginId", id);
+            session.close();
+            return list;
+
+        } catch (IOException e) {
+            System.out.println("Error in selectHistoryById : " + e);
+            return list;
+
+        }
+    }
+
+
+    public static List<LoginHistory> selectHistoryByIdAndPage(String id, int page) {
+        List<LoginHistory> list = null;
+        int offset = (page - 1) * 20;
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            Map map = Map.of("id", id, "offset", offset);
+            list = session.selectList("mappers.LoginHistoryMapper.selectByLoginIdAndPage", map);
+            session.close();
+            return list;
+        } catch (IOException e) {
+            System.out.println("Error in selectHistoryByIdAndPage : " + e);
+            return list;
+
+        }
+    }
+
+// -------------------------------------- delete --------------------------------------
+
+
+// -------------------------------------- update --------------------------------------
 
 
 }

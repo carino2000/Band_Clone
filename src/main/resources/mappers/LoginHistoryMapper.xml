@@ -9,6 +9,14 @@
     </insert>
 
 
+    <select id="selectByLoginId" parameterType="string" resultType="LoginHistory">
+        select * from loginHistory where loginId=#{id} order by loginAt desc
+    </select>
+    <select id="selectByLoginIdAndPage" parameterType="map" resultType="LoginHistory">
+        select * from loginHistory where loginId=#{id} order by loginAt desc limit 20 offset #{offset}
+    </select>
+
+
 <!--    <select id="selectByLoginId" parameterType="string" resultType="LoginUser">-->
 <!--        select * from loginHistory where loginId=#{id} order by loginAt desc-->
 <!--    </select>-->

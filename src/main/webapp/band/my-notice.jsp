@@ -27,7 +27,7 @@
             <div class="request-item" style="margin-bottom:12px; padding:10px; border:1px solid #eee; border-radius:8px;">
                 <p>
                     <strong><c:out value="${one.memberId}"/></strong>님의
-                    <strong><c:out value="${one.bandName}"/></strong> 밴드 가입 신청
+                    <strong><c:out value="${one.bandName}"/></strong> 밴드 가입 신청 - <small>${one.prettyRequestAt}
                 </p>
                 <p>[<c:out value="${one.memberNickname}"/>]님의 인사말: <c:out value="${one.greeting}"/></p>
 
