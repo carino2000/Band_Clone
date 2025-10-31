@@ -62,6 +62,7 @@
             <c:choose>
                 <c:when test="${isPrivate && isNotMember}">
                     <h2>비공개 밴드입니다! 게시글을 확인하시려면 ${band.name} 밴드에 가입해주세요</h2>
+
                 </c:when>
                 <c:when test="${isPrivate && !isApproved}">
                     <h2>아직 밴드 맴버가 아닙니다! 밴드 마스터가 신청을 수리할 때까지 기다려주세요</h2>
@@ -70,6 +71,7 @@
                     <h2>아직 게시글이 없어요!</h2>
                 </c:when>
                 <c:otherwise>
+                    <c:if test="${!isPrivate && !isApproved}"><button>가입하기</button></c:if>
                     <c:forEach items="${articles}" var="one">
                         <div>
                             <span>${one.writerId}</span>
