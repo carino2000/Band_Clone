@@ -21,6 +21,24 @@
     <select id="selectArticleByContent" parameterType="String" resultType="Article">
         select content from article order by wroteAt desc
     </select>
+    <select id="selectArticleByIdx" resultType="Article" parameterType="int">
+        select * from article where idx=#{idx}
+    </select>
+
+
+
+    <update id="updateArticle" parameterType="Article">
+        update article set content=#{content} where idx=#{idx}
+    </update>
+
+
+
+    <delete id="deleteArticleCommentByArticleIdx" parameterType="int">
+        delete from articleComment where articleNo=#{idx}
+    </delete>
+    <delete id="deleteArticleByidx" parameterType="int">
+        delete from article where idx=#{idx}
+    </delete>
 
 
 

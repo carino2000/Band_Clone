@@ -14,6 +14,13 @@
 </head>
 <body>
 <%@include file="/template/header.jspf" %>
+<c:choose>
+    <c:when test="${msg == 1}">
+        <script>
+            window.alert("게시글 수정이 정상 처리되었습니다.");
+        </script>
+    </c:when>
+</c:choose>
 
 
 <div class="main">
@@ -74,6 +81,14 @@
                                         value="${one.content}"/> </span>
                             </div>
                         </div>
+                        <c:if test="${member.id == one.writerId}">
+                            <div><!-- 스크랩, 즐찾 등 이미지 -->
+                                <a href="/article/edit?idx=${one.idx}&bandNo=${band.no}">
+                                    <button>수정:✂</button>
+                                </a>
+                                    <button onclick="deleteConfirm(${one.idx})">삭제:❌</button>
+                            </div>
+                        </c:if>
                         <div>
                             <c:if test="${!isNotMember}">
                                 <p>${member.nickname}님의 의견을 남겨주세요</p>
@@ -129,6 +144,12 @@
             }
         } else {
             document.getElementById("newComment").submit();
+        }
+    }
+
+    function deleteConfirm(idx) {
+        if (window.confirm("해당 게시글을 정말 삭제하시겠습니까?")) {
+                location.href = "/article/delete?idx="+idx+"&bandNo=${band.no}";
         }
     }
 </script>

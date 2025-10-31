@@ -27,13 +27,14 @@ public class Article {
     public Article() {
     }
 
+
     public Article(int bandNo, String writerId, String content) {
         this.bandNo = bandNo;
         this.writerId = writerId;
         this.content = content;
     }
 
-    public String getPrettyWroteAt(){
+    public String getPrettyWroteAt() {
         PrettyTime p = new PrettyTime(Locale.KOREA);
         return p.format(this.wroteAt);
     }

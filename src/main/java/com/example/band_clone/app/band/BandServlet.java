@@ -23,6 +23,11 @@ public class BandServlet extends HttpServlet {
         boolean isNotMember = true;
         boolean isApproved = false;
 
+        if(req.getParameter("msg") != null){
+            int msg = Integer.parseInt(req.getParameter("msg"));
+            req.setAttribute("msg", msg);
+        }
+
 
         int no = req.getParameter("no") == null ? -1 : Integer.parseInt(req.getParameter("no"));
         Band band = BandUtil.selectBandByNo(no);
@@ -70,7 +75,7 @@ public class BandServlet extends HttpServlet {
         req.setAttribute("member", m);
         req.setAttribute("band", band);
         req.setAttribute("articles", articles);
-        req.getRequestDispatcher("/band/article.jsp").forward(req, resp);
+        req.getRequestDispatcher("/band/article/article.jsp").forward(req, resp);
 
     }
 
@@ -97,7 +102,7 @@ public class BandServlet extends HttpServlet {
             req.setAttribute("member", m);
             req.setAttribute("band", band);
             req.setAttribute("articles", articles);
-            req.getRequestDispatcher("/band/article.jsp").forward(req, resp);
+            req.getRequestDispatcher("/band/article/article.jsp").forward(req, resp);
         }
 
     }
