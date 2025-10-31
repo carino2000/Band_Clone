@@ -1,7 +1,9 @@
 package com.example.band_clone.app.util;
 
 import com.example.band_clone.app.vo.BandMember;
+import com.example.band_clone.app.vo.LoginHistory;
 import com.example.band_clone.app.vo.Topic;
+import com.example.band_clone.app.vo.UserMsg;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -10,6 +12,19 @@ import java.util.Map;
 public class NotificationUtil {
 
 // -------------------------------------- insert --------------------------------------
+
+    public static int insertUserMsg(UserMsg userMsg) {
+        int result = -1;
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            result = sqlSession.insert("mappers.UserMsgMapper.insertUserMsg", userMsg);
+            sqlSession.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in insertUserMsg : " + e);
+            return result;
+        }
+    }
 
 
 // -------------------------------------- select --------------------------------------
@@ -27,12 +42,18 @@ public class NotificationUtil {
     }
 
 
+
+
 // -------------------------------------- count --------------------------------------
+
+
+
 
     public static int countMyNoticeById(String id) {
         try {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            int noticeCnt = sqlSession.selectOne("mappers.BandMemberMapper.countMyNoticeById", id);
+            int noticeCnt = sqlSession.selectOne("mappers.BandMemberMapper.countMyRequestById", id);
+            noticeCnt += UserMsgUtil.countMyMsgById(id);
             sqlSession.close();
             return noticeCnt;
         } catch (Exception e) {
@@ -45,7 +66,13 @@ public class NotificationUtil {
 // -------------------------------------- delete --------------------------------------
 
 
-    // -------------------------------------- update --------------------------------------
+
+
+
+
+// -------------------------------------- update --------------------------------------
+
+
     public static int updateApprovedBandMember(int bandNo, String id) {
         Map map = Map.of("bandNo", bandNo, "id", id);
         try {

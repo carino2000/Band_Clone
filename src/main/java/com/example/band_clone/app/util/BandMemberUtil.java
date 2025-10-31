@@ -58,6 +58,20 @@ public class BandMemberUtil {
 
 // -------------------------------------- delete --------------------------------------
 
+    public static int deleteMemberById(int bandNo, String id) {
+        int result = -1;
+        Map map = Map.of("bandNo", bandNo, "id", id);
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            result = session.delete("mappers.BandMemberMapper.deleteMemberById", map);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteMemberById: " + e);
+        }
+        return result;
+    }
+
+
 
 // -------------------------------------- update --------------------------------------
 

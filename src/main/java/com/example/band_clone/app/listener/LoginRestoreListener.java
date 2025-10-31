@@ -47,6 +47,7 @@ public class LoginRestoreListener implements ServletRequestListener {
             Member m = (Member) req.getSession().getAttribute("logonUser");
             int noticeCnt = NotificationUtil.countMyNoticeById(m.getId());
 
+
             req.setAttribute("noticeCnt", noticeCnt);
             req.setAttribute("member", m);
 
