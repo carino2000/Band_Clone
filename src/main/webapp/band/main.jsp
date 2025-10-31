@@ -81,7 +81,7 @@
             </c:forEach>
         </div>
         <div>
-            <p style="margin-top: 20px">----------------- ${keyword == '' ? '전체 밴드 노출' : '검색한 밴드 노출'} -----------------</p>
+            <p style="margin-top: 20px">----------------- ${keyword == '' ? '전체 밴드 노출' : keyword2+='에 대한 검색한 밴드 노출'} -----------------</p>
             <c:forEach items="${keywordBands}" var="one">
                 <div class="article-item">
                     <div style="display: flex; justify-content: space-between">
