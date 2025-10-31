@@ -22,11 +22,14 @@
     </div>
     <!-- 검색 영역 -->
     <div style="padding: 0.5rem 0rem; text-align: center">
-        <form action="/band-main">
+        <form action="/band-search">
             <input type="text" name="keyword" class="input" style="width: 200px"
-                   placeholder="커뮤니티 내에서 검색"
+                   placeholder="커뮤니티 내에서 검색" required
                    value="${keyword}"/>
         </form>
+    </div>
+    <div style="padding: 0.5rem 0rem">
+        <a href="/band-search"><button>전체 밴드 보기</button></a>
     </div>
     <div style="flex: 4"> <!-- 중앙 -->
         <div><!-- 이미지 베너 -->
@@ -81,25 +84,7 @@
             </c:forEach>
         </div>
         <div>
-            <p style="margin-top: 20px">----------------- ${keyword == '' ? '전체 밴드 노출' : keyword2+='에 대한 검색한 밴드 노출'} -----------------</p>
-            <c:forEach items="${keywordBands}" var="one">
-                <div class="article-item">
-                    <div style="display: flex; justify-content: space-between">
-                        <div>
-                            <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
-                                <span class="article-topic text-gray">${topic}</span>
-                            </c:forEach>
-                            <span>${one.masterId}님의 밴드</span>
-                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨</small></span>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="/band?no=${one.no}" class="article-link">
-                            <span style="font-size: 1.1rem; font-weight: 500"><c:out value="${one.name}"/> </span>
-                        </a>
-                    </div>
-                </div>
-            </c:forEach>
+            <p style="margin-top: 20px">----------------- 추천 밴드 노출-----------------</p>
         </div>
 
 
