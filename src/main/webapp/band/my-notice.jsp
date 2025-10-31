@@ -46,15 +46,15 @@
         </div>
         <h3>--- ${member.id}님이 받은 메세지 ---</h3>
         <div>
-            <c:forEach var="one" items="${msgList}">
+            <c:forEach var="msg" items="${msgList}">
                 <div class="request-item"
                      style="margin-bottom:12px; padding:10px; border:1px solid #eee; border-radius:8px;">
                     <p>
-                        <strong><c:out value="${one.writerId}"/></strong>님에게 온 메세지
-                        <strong><c:out value="${one.content}"/></strong> 밴드 가입 신청 - <small>${one.prettyWroteAt}
+                        <strong><c:out value="${msg.writerId}"/></strong>님에게 온 메세지
+                        <strong><c:out value="${msg.content}"/></strong> 밴드 가입 신청 - <small>${msg.prettyWroteAt}
                     </p>
                     <form action="/my/notice" method="post" style="margin-top:6px;">
-                        <input type="hidden" name="msgIdx" value="${one.idx}"/>
+                        <input type="hidden" name="msgIdx" value="${msg.idx}"/>
 
                         <button type="submit" name="deleteMsg" value="true" style="margin-right:6px;">확인/삭제</button>
                     </form>
