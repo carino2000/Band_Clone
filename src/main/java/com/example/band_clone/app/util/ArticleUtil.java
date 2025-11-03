@@ -91,7 +91,18 @@ public class ArticleUtil {
             return null;
         }
     }
-
+    // 내가 쓴 글보기
+    public static List<Article> selectArticleByWriterId(String writerId) {
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            List<Article> list = sqlSession.selectList("mappers.ArticleMapper.selectArticleByWriterId", writerId);
+            sqlSession.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectArticleByWriterId : " + e);
+            return null;
+        }
+    }
 
     // -------------------------------------- delete --------------------------------------
 

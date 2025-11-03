@@ -24,6 +24,10 @@
     <select id="selectArticleByIdx" resultType="Article" parameterType="int">
         select * from article where idx=#{idx}
     </select>
+    <!-- 내가 쓴 글보기-->
+    <select id="selectArticleByWriterId" resultType="Article" parameterType="String">
+        select * from article where writerId=#{writerId} order by wroteAt desc
+    </select>
 
 
 
