@@ -26,7 +26,7 @@
     </select>
     <!-- 내가 쓴 글보기-->
     <select id="selectArticleByWriterId" resultType="Article" parameterType="String">
-        select * from article where writerId=#{writerId} order by wroteAt desc
+        SELECT a.*, b.name AS bandName FROM article a JOIN band b ON a.bandNo = b.no WHERE a.writerId = #{writerId}
     </select>
 
 

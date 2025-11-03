@@ -21,6 +21,8 @@ public class Article {
     int likeCnt;
     int commentCnt;
 
+    private String bandName;
+
     List<ArticleComment> articleComments;
 
 

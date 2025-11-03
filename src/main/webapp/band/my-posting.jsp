@@ -25,7 +25,7 @@
             <div class="article-item">
                 <div style="display: flex; justify-content: space-between">
                     <div>
-                        <span>${one.writerId}님이 작성한 글 입니다.</span>
+                        <span><b>'${one.bandName}'</b> 밴드에서 ${one.writerId}님이 작성한 글 입니다.</span>
                         <span>&middot; <small>${one.wroteAt}에 작성함</small></span>
                     </div>
                 </div>

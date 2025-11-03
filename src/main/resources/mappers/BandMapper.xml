@@ -22,7 +22,6 @@
     <select id="selectMyBandsById" resultType="Band" parameterType="string">
         select * from band where masterId=#{id} order by no desc
     </select>
-
     <select id="selectBandByKeyword" resultType="Band" parameterType="String" >
         select * from band where name like #{keyword} or description like #{keyword} order by createdAt desc;
     </select>
