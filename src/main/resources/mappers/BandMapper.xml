@@ -31,6 +31,10 @@
         delete from band where masterId=#{id}
     </delete>
 
+    <delete id="deleteBandByBandNo" parameterType="int">
+        delete from band where no=#{bandNo}
+    </delete>
+
 
 
 </mapper>

@@ -82,6 +82,29 @@ public class BandMemberUtil {
         }
     }
 
+    public static int leaveBand(String id, int bandNo) {
+        int result = -1;
+        try {
+            Map map = Map.of("bandNo", bandNo, "id", id);
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.BandMemberMapper.leaveBand", id);
+            session.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in leaveBand: " + e);
+            return result;
+        }
+    }
+
+    public static void deleteBandMemberByBandNo(int bandNo) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.BandMemberMapper.deleteBandMemberByBandNo", bandNo);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteBandMemberByBandNo: " + e);
+        }
+    }
 
 
 // -------------------------------------- update --------------------------------------

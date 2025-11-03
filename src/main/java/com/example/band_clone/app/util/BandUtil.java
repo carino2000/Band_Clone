@@ -121,7 +121,7 @@ public class BandUtil {
 
 // -------------------------------------- delete --------------------------------------
 
-    public static void deleteAllMyBand(String id){
+    public static void deleteAllMyBand(String id) {
         try {
             SqlSession session = MyBatisUtil.build().openSession(true);
             session.delete("mappers.BandMapper.deleteAllMyBand", id);
@@ -132,7 +132,22 @@ public class BandUtil {
     }
 
 
+    public static int deleteBandByBandNo(int bandNo) {
+        int result = -1;
+        try {
+            ArticleUtil.deleteArticleCommentByBandNo(bandNo);
+            ArticleUtil.deleteArticleByBandNo(bandNo);
+            BandMemberUtil.deleteBandMemberByBandNo(bandNo);
 
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            result = session.delete("mappers.BandMapper.deleteBandByBandNo", bandNo);
+            session.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in deleteBandByBandNo: " + e);
+            return result;
+        }
+    }
 
 
 // -------------------------------------- update --------------------------------------

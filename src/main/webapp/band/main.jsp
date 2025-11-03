@@ -14,7 +14,18 @@
 </head>
 <body>
 <%@include file="/template/header.jspf" %>
-
+<c:choose>
+    <c:when test="${msg == 1}">
+        <script>
+            window.alert("회원 탈퇴가 정상적으로 처리되었습니다.");
+        </script>
+    </c:when>
+    <c:when test="${msg == 2}">
+        <script>
+            window.alert("밴드 삭제가 정상적으로 처리되었습니다.");
+        </script>
+    </c:when>
+</c:choose>
 
 <div class="main">
     <div style="flex: 1">
@@ -36,7 +47,9 @@
         </form>
     </div>
     <div style="padding: 0.5rem 0rem">
-        <a href="/band-search"><button>전체 밴드 보기</button></a>
+        <a href="/band-search">
+            <button>전체 밴드 보기</button>
+        </a>
     </div>
     <div style="flex: 4"> <!-- 중앙 -->
         <div><!-- 이미지 베너 -->
@@ -79,7 +92,8 @@
                                 </span>
                             </c:forEach>
                             <span>${one.masterId}님의 밴드</span>
-                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨 <c:if test="${!one.approved}">(가입 승인 대기 중)</c:if> </small></span>
+                            <span>&middot; <small>${one.prettyCreatedAt}에 창설됨 <c:if
+                                    test="${!one.approved}">(가입 승인 대기 중)</c:if> </small></span>
                         </div>
                     </div>
                     <div>

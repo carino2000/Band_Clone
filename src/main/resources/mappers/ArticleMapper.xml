@@ -57,6 +57,13 @@
         delete from articleComment where articleNo in (select idx from article where writerId=#{id})
     </delete>
 
+    <delete id="deleteArticleCommentByBandNo" parameterType="int">
+        delete from articleComment where articleNo in (select idx from article where bandNo=#{bandNo})
+    </delete>
+    <delete id="deleteArticleByBandNo" parameterType="int">
+        delete from article where bandNo=#{bandNo}
+    </delete>
+
 
 
 

@@ -91,6 +91,7 @@ public class ArticleUtil {
             return null;
         }
     }
+
     // 내가 쓴 글보기
     public static List<Article> selectArticleByWriterId(String writerId) {
         try {
@@ -177,6 +178,25 @@ public class ArticleUtil {
         }
     }
 
+    public static void deleteArticleCommentByBandNo(int bandNo) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.ArticleMapper.deleteArticleCommentByBandNo", bandNo);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteArticleCommentByBandNo: " + e);
+        }
+    }
+
+    public static void deleteArticleByBandNo(int bandNo) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.ArticleMapper.deleteArticleByBandNo", bandNo);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteArticleByBandNo: " + e);
+        }
+    }
 
 
     // -------------------------------------- update --------------------------------------

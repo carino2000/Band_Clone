@@ -46,8 +46,15 @@
         </div>
     </div>
     <div style="flex: 4"> <!-- 중앙 -->
-        <div><!-- 이미지 베너 -->
-            이미지 베너
+        <div>
+            <c:choose>
+                <c:when test="${!isNotMember && member.id == band.masterId}">
+                    <button onclick="deleteBandConfirm()">밴드 삭제</button>
+                </c:when>
+                <c:when test="${!isNotMember && member.id != band.masterId}">
+                    <button onclick="leaveBandConfirm()">밴드 탈퇴</button>
+                </c:when>
+            </c:choose>
         </div>
         <div>
             <span>${band.name} 밴드에 오신걸 환영합니다!</span>
@@ -62,8 +69,6 @@
                 <button type="button" onclick="reactionHandle(${isNotMember})">게시</button>
             </form>
         </div>
-
-
         <div>
             <c:choose>
                 <c:when test="${isPrivate && isNotMember}">
@@ -180,6 +185,19 @@
     function commentDeleteConfirm(idx, writerId) {
         if (window.confirm("해당 댓글을 정말 삭제하시겠습니까?")) {
             location.href = "/comment/delete?idx=" + idx + "&bandNo=${band.no}&writerId=" + writerId;
+        }
+    }
+
+
+    function deleteBandConfirm() {
+        if (window.confirm("${band.name}밴드를 정말 삭제하시겠습니까?")) {
+            location.href = "/band-delete?bandNo=${band.no}&masterId=${band.masterId}";
+        }
+    }
+
+    function leaveBandConfirm() {
+        if (window.confirm("${band.name}밴드를 정말 탈퇴하시겠습니까?")) {
+            location.href = "/band-leave?bandNo=${band.no}";
         }
     }
 </script>
