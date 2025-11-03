@@ -99,6 +99,19 @@ public class BandServlet extends HttpServlet {
             Band band = BandUtil.selectBandByNo(no);
             List<Article> articles = ArticleUtil.selectAllArticleByBandNo(no);
 
+            List<BandMember> bandMember = BandMemberUtil.selectBandMemberByBandNo(no);
+            List<BandMember> memberList = new ArrayList<BandMember>();
+            for (BandMember b : bandMember) {
+                if (b.isApproved()) {
+                    memberList.add(b);
+                }
+            }
+
+            req.setAttribute("memberList", memberList);
+            req.setAttribute("isApproved", req.getParameter("isApproved"));
+            req.setAttribute("isNotMember", req.getParameter("isNotMember"));
+            req.setAttribute("isPrivate", req.getParameter("isPrivate"));
+
             req.setAttribute("member", m);
             req.setAttribute("band", band);
             req.setAttribute("articles", articles);

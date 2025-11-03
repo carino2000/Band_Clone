@@ -101,6 +101,9 @@
                                                placeholder="댓글을 남겨주세요">
                                         <input type="hidden" name="articleNo" value="${one.idx}">
                                         <input type="hidden" name="bandNo" value="${band.no}">
+                                        <input type="hidden" name="isPrivate" value="${isPrivate}">
+                                        <input type="hidden" name="isApproved" value="${isApproved}">
+                                        <input type="hidden" name="isNotMember" value="${isNotMember}">
                                         <button type="button" onclick="commentReactionHandle(${isNotMember})">작성하기
                                         </button>
                                     </form>
