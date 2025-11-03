@@ -1,80 +1,188 @@
+<%-- login.jsp (깔끔한 그린 테마 + 동작 보장) --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 25. 10. 17.
-  Time: 오후 12:11
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!doctype html>
+<html lang="ko">
 <head>
-    <title>커뮤니티</title>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>로그인</title>
+    <link rel="stylesheet" href="<c:url value='/static/css/style.css'/>"/>
+    <style>
+        /* 전체 배경 / 중앙 박스 */
+        body {
+            margin: 0;
+            background: #f6fff6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+            color: #073217;
+        }
+        .wrap {
+            display: flex;
+            max-width: 750px;
+            margin: 36px auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 68%;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(6,90,30,0.06);
+            border: 1px solid rgba(10,90,20,0.04);
+        }
+
+        .logo {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            text-decoration:none;
+            color:#0b3e16;
+            margin-bottom:12px;
+        }
+        .logo .mark {
+            width:44px; height:44px; border-radius:8px;
+            background:linear-gradient(180deg,#7ff18a,#2bd34c);
+            display:flex; align-items:center; justify-content:center; color:#06320a; font-weight:800;
+            box-shadow:0 6px 18px rgba(26,166,31,0.08);
+        }
+        .logo .title { font-size:18px; font-weight:800; }
+
+        h2 { margin:6px 0 4px 0; color:#0f3e13; font-size:20px; }
+        .subtitle { color:#4b6b4b; margin-bottom:18px; }
+
+        label small { display:block; font-weight:700; color:#154f22; margin-bottom:6px; }
+        .input {
+            width:100%;
+            padding:10px 12px;
+            border-radius:8px;
+            border:1px solid #dfeee0;
+            background:#fbfffb;
+            box-sizing:border-box;
+            font-size:14px;
+        }
+        .input:focus { outline:none; border-color:#1aa61f; box-shadow:0 6px 18px rgba(26,166,31,0.07); }
+
+        .row { margin-top:12px; display:flex; align-items:center; gap:8px; }
+        .checkbox { display:inline-flex; align-items:center; gap:8px; color:#154f22; cursor:pointer; }
+
+        .bt-submit {
+            margin-top:18px;
+            width:100%;
+            padding:11px 14px;
+            border-radius:10px;
+            background: linear-gradient(90deg,#2bd34c,#1aa61f);
+            color:#fff;
+            border:none;
+            font-weight:800;
+            font-size:15px;
+            cursor:pointer;
+            transition:transform .08s ease;
+        }
+        .bt-submit:disabled {
+            opacity:0.55;
+            cursor:not-allowed;
+            transform:none;
+            box-shadow:none;
+        }
+        .helper { margin-top:12px; color:#6b7f6b; font-size:13px; text-align:center; }
+
+        .foot { margin-top:16px; text-align:center; color:#154f22; font-weight:600; }
+        .foot a { color:#0b3e16; text-decoration:none; margin-left:6px; }
+
+        @media (max-width:520px) {
+            .wrap { padding:12px; margin:18px auto; }
+            .card { padding:18px; }
+        }
+    </style>
 </head>
 <body>
-<div class="signup-wrap">
-    <div class="signup">
-        <a href="/">로고</a>
-        <h2 class="text-center">가제에 오신것을 환영합니다.</h2>
+<div class="wrap">
+    <div class="card" role="main" aria-labelledby="loginTitle">
 
-        <p class="text-center text-gray">
-            가제는 소프트웨어 개발자를 위한 지식공유 플랫폼입니다.
-        </p>
-        <form class="signup-form" action="/log-in" method="post">
+        <a class="logo" href="<c:url value='/'/>" aria-label="홈으로 이동">
+            <div class="mark">B</div>
+            <div class="title">BandClone</div>
+        </a>
+
+        <h2 id="loginTitle">로그인</h2>
+        <div class="subtitle">계정으로 로그인해 밴드 활동을 시작하세요.</div>
+
+        <form id="loginForm" class="signup-form" action="/log-in" method="post" autocomplete="off">
             <c:if test="${destination != null}">
-                <input type="hidden" value="${destination}" name="destination">
+                <input type="hidden" name="destination" value="${destination}"/>
             </c:if>
 
             <div>
                 <label for="id"><small>아이디</small></label>
-                <div class="mt-1">
-                    <input type="text" class="input" name="id" id="id" onkeyup="updateButtonState()" required
-                           autofocus/>
-                </div>
+                <input id="id" name="id" class="input" type="text" required autocomplete="username" autofocus/>
             </div>
-            <div>
+
+            <div class="row" style="flex-direction:column; align-items:stretch;">
                 <label for="pw"><small>비밀번호</small></label>
-                <div class="mt-1">
-                    <input type="password" class="input" name="pw" id="pw" onkeyup="updateButtonState()" required/>
-                </div>
+                <input id="pw" name="pw" class="input" type="password" required autocomplete="current-password"/>
             </div>
-            <div>
-                <div class="mt-1">
-                    <input type="checkbox" name="keepLogin" id="keepLogin" onchange="keepLoginConfirm()"/>
-                    <label for="keepLogin"><small>로그인 상태 유지</small></label>
-                </div>
+
+            <div class="row" style="justify-content:space-between; margin-top:10px;">
+                <label class="checkbox"><input id="keepLogin" name="keepLogin" type="checkbox" onchange="keepLoginConfirm()"/> 로그인 상태 유지</label>
+                <div style="font-size:13px; color:#6b7f6b;">공용 PC에서는 사용하지 마세요</div>
             </div>
 
             <div>
-                <button class="bt-submit" id="loginbt" disabled>로그인</button>
+                <button id="loginbt" class="bt-submit" type="submit" disabled>로그인</button>
             </div>
         </form>
-        <p class="text-center">
-            아직 회원이 아니신가요? <a href="/sign-up">회원가입</a>
-        </p>
 
+        <div class="foot">
+            아직 회원이 아니신가요?
+            <a href="<c:url value='/sign-up'/>">회원가입</a>
+        </div>
     </div>
-
 </div>
 
-
 <script>
-    function updateButtonState() {
-        const idValue = document.getElementById("id").value;
-        const pwValue = document.getElementById("pw").value;
-        if (idValue && pwValue) {
-            document.getElementById("loginbt").disabled = false;
-        }
-    }
+    (function(){
+        const idInput = document.getElementById('id');
+        const pwInput = document.getElementById('pw');
+        const loginBtn = document.getElementById('loginbt');
 
-    function keepLoginConfirm() {
-        if (document.getElementById("keepLogin").checked) {
-            if (!window.confirm("공용 PC에서는 사용을 삼가해주세요.")) {
-                document.getElementById("keepLogin").checked = false;
-            }
+        function updateButtonState() {
+            const idVal = idInput.value.trim();
+            const pwVal = pwInput.value.trim();
+            loginBtn.disabled = !(idVal.length > 0 && pwVal.length > 0);
         }
-    }
+
+        // attach events (works on older browsers too)
+        idInput.addEventListener('input', updateButtonState);
+        pwInput.addEventListener('input', updateButtonState);
+
+        // keep login confirm
+        window.keepLoginConfirm = function() {
+            const cb = document.getElementById('keepLogin');
+            if(cb.checked){
+                if(!confirm('공용 PC에서는 사용을 삼가해주세요. 계속하시겠습니까?')){
+                    cb.checked = false;
+                }
+            }
+        };
+
+        // initialize (in case browser autofills)
+        window.addEventListener('load', function(){
+            // small timeout to allow browser autofill to populate fields
+            setTimeout(updateButtonState, 150);
+        });
+
+        // optional: prevent double submit by disabling button once clicked
+        document.getElementById('loginForm').addEventListener('submit', function(e){
+            if(loginBtn.disabled) {
+                e.preventDefault();
+                return;
+            }
+            loginBtn.disabled = true;
+            // allow form submit to proceed
+        });
+    })();
 </script>
 </body>
 </html>
