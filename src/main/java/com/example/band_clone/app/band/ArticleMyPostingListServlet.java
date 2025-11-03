@@ -18,10 +18,7 @@ public class ArticleMyPostingListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member m = (Member) req.getSession().getAttribute("logonUser");
 
-
         List<Article> writerId = ArticleUtil.selectArticleByWriterId(m.getId());
-
-
 
         req.setAttribute("writerId", writerId);
         req.getRequestDispatcher("/band/my-posting.jsp").forward(req,resp);

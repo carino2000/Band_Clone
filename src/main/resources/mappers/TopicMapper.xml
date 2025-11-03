@@ -8,6 +8,18 @@
         select * from topics
     </select>
 
+    <select id="findMyMostTopic" parameterType="string" resultType="string">
+        select band.topic from bandMember join band on bandMember.bandNo = band.no where memberId=#{id} order by bandNo
+        asc;
+    </select>
+
+    <select id="recommendBandByMostTopic" parameterType="string" resultType="Band">
+        select band.*, temp.cnt
+        from band join ( select bandNo , count(*) as cnt from bandMember group by bandNo) as temp on band.no =
+        temp.bandNo
+        where band.topic like '%programming%' AND band.no NOT IN (SELECT bandNo FROM bandMember WHERE memberId = 'qwer')
+        order by temp.cnt desc limit 5;
+    </select>
 
 
 </mapper>

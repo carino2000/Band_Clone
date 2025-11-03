@@ -19,7 +19,14 @@
 
 <div class="main">
     <div style="flex: 1">
-
+        <h3>${member.id}님의 맞춤 밴드</h3>
+        <ul>
+            <c:forEach var="one" items="${recommend}">
+                <li style="margin-top: 1rem">
+                    <a href="/band?no=${one.no}">${one.name}</a>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
     <!-- 검색 영역 -->
     <div style="padding: 0.5rem 0rem; text-align: center">

@@ -27,6 +27,9 @@ public class Band {
     String memberId;
     boolean approved;
 
+    // topic 자동추천용
+    int cnt;
+
     public Band() {
     }
 
