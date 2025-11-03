@@ -87,7 +87,7 @@ public class BandMemberUtil {
         try {
             Map map = Map.of("bandNo", bandNo, "id", id);
             SqlSession session = MyBatisUtil.build().openSession(true);
-            session.delete("mappers.BandMemberMapper.leaveBand", id);
+            result = session.delete("mappers.BandMemberMapper.leaveBand", map);
             session.close();
             return result;
         } catch (Exception e) {
