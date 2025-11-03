@@ -43,6 +43,20 @@
     <delete id="deleteArticleByidx" parameterType="int">
         delete from article where idx=#{idx}
     </delete>
+    <delete id="deleteMyCommentByIdx" parameterType="int">
+        delete from articleComment where idx=#{idx}
+    </delete>
+
+    <delete id="deleteAllMyComment" parameterType="string">
+        delete from articleComment where writerId=#{id}
+    </delete>
+    <delete id="deleteAllMyArticle" parameterType="string">
+        delete from article where writerId=#{id}
+    </delete>
+    <delete id="deleteAllMyArticleComment" parameterType="string">
+        delete from articleComment where articleNo in (select idx from article where writerId=#{id})
+    </delete>
+
 
 
 

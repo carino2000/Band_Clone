@@ -131,6 +131,52 @@ public class ArticleUtil {
         return result;
     }
 
+    public static int deleteMyCommentByIdx(int idx) {
+        int result = -1;
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            result = session.delete("mappers.ArticleMapper.deleteMyCommentByIdx", idx);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteMyCommentByIdx: " + e);
+        }
+        return result;
+    }
+
+
+    public static void deleteAllMyComment(String id) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.ArticleMapper.deleteAllMyComment", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyComment: " + e);
+        }
+    }
+
+    public static void deleteAllMyArticleComment(String id) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.ArticleMapper.deleteAllMyArticleComment", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyArticleComment: " + e);
+        }
+    }
+
+
+    public static void deleteAllMyArticle(String id) {
+        try {
+            deleteAllMyArticleComment(id);
+
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.ArticleMapper.deleteAllMyArticle", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyArticle: " + e);
+        }
+    }
+
 
 
     // -------------------------------------- update --------------------------------------

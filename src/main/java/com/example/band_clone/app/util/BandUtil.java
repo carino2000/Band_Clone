@@ -121,6 +121,19 @@ public class BandUtil {
 
 // -------------------------------------- delete --------------------------------------
 
+    public static void deleteAllMyBand(String id){
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.BandMapper.deleteAllMyBand", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyBand: " + e);
+        }
+    }
+
+
+
+
 
 // -------------------------------------- update --------------------------------------
 

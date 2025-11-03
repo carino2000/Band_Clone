@@ -27,4 +27,10 @@
     </select>
 
 
+    <delete id="deleteAllMyBand" parameterType="string">
+        delete from band where masterId=#{id}
+    </delete>
+
+
+
 </mapper>

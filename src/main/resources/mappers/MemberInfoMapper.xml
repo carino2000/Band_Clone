@@ -24,6 +24,9 @@
         update memberInfo set pw=#{newPw} where id=#{id}
     </update>
 
+    <delete id="deleteAllMyMemberInfo" parameterType="string">
+        delete from memberInfo where id=#{id}
+    </delete>
 
 
 </mapper>

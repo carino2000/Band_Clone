@@ -16,19 +16,9 @@
         select * from loginHistory where loginId=#{id} order by loginAt desc limit 20 offset #{offset}
     </select>
 
-
-<!--    <select id="selectByLoginId" parameterType="string" resultType="LoginUser">-->
-<!--        select * from loginHistory where loginId=#{id} order by loginAt desc-->
-<!--    </select>-->
-<!--    <select id="selectByLoginIdAndPage" parameterType="map" resultType="LoginUser">-->
-<!--        select * from loginHistory where loginId=#{id} order by loginAt desc limit 20 offset #{offset}-->
-<!--    </select>-->
-<!--    -->
-
-<!--    <delete id="deleteLoginHistoryById" parameterType="string">-->
-<!--        delete from loginHistory where loginId=#{id}-->
-<!--    </delete>-->
-
+    <delete id="deleteAllMyLoginHistory" parameterType="string">
+        delete from loginHistory where loginId=#{id}
+    </delete>
 
 
 </mapper>

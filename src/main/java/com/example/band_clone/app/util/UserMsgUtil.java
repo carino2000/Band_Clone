@@ -57,6 +57,16 @@ public class UserMsgUtil {
         }
     }
 
+    public static void deleteAllMyMsg(String id){
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.UserMsgMapper.deleteAllMyMsg", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyMsg: " + e);
+        }
+    }
+
 
 
 

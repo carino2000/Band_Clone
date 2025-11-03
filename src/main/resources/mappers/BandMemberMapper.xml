@@ -49,5 +49,9 @@
     <delete id="deleteMemberById" parameterType="map">
         delete from bandMember where memberId=#{id} and bandNo=#{bandNo}
     </delete>
+    <delete id="deleteAllMyBandMember" parameterType="string">
+        delete from bandMember where bandNo in (select no from band where masterId=#{id}) or memberId=#{id}
+    </delete>
+
 
 </mapper>

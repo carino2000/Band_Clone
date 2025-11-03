@@ -22,6 +22,9 @@
     <delete id="deleteMsgByIdx" parameterType="map">
         delete from userMsg where idx=#{msgIdx}
     </delete>
+    <delete id="deleteAllMyMsg" parameterType="string">
+        delete from userMsg where recipientId=#{id} or writerId=#{id}
+    </delete>
 
 
 </mapper>

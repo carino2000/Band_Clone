@@ -72,6 +72,17 @@ public class BandMemberUtil {
     }
 
 
+    public static void deleteAllMyBandMember(String id) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.BandMemberMapper.deleteAllMyBandMember", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyBandMember: " + e);
+        }
+    }
+
+
 
 // -------------------------------------- update --------------------------------------
 

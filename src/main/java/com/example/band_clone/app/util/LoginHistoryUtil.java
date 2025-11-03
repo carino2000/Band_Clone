@@ -63,6 +63,19 @@ public class LoginHistoryUtil {
 
 // -------------------------------------- delete --------------------------------------
 
+    public static void deleteAllMyLoginHistory(String id) {
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.LoginHistoryMapper.deleteAllMyLoginHistory", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyLoginHistory: " + e);
+        }
+    }
+
+
+
+
 
 // -------------------------------------- update --------------------------------------
 

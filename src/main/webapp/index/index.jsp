@@ -24,6 +24,11 @@
             window.alert("비밀번호 변경 완료!\n다시 로그인해주세요.");
         </script>
     </c:when>
+    <c:when test="${msg == 3}">
+        <script>
+            window.alert("회원 탈퇴 완료\n지금까지 함께해주셔서 감사합니다");
+        </script>
+    </c:when>
 </c:choose>
 <%@include file="/template/header.jspf"%>
 

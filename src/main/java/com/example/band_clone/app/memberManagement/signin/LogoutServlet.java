@@ -26,12 +26,15 @@ public class LogoutServlet extends HttpServlet {
         req.getSession().removeAttribute("logonUser");
 
 
-        if(req.getParameter("msg") != null){
-            if(req.getParameter("msg").equals("profileEdit")){
+        if (req.getParameter("msg") != null) {
+            if (req.getParameter("msg").equals("profileEdit")) {
                 resp.sendRedirect("/index?msg=1");
                 return;
-            }else if(req.getParameter("msg").equals("passwordEdit")){
+            } else if (req.getParameter("msg").equals("passwordEdit")) {
                 resp.sendRedirect("/index?msg=2");
+                return;
+            } else if (req.getParameter("msg").equals("deleteMember")) {
+                resp.sendRedirect("/index?msg=3");
                 return;
             }
         }

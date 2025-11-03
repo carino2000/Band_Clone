@@ -80,6 +80,33 @@ public class MemberUtil {
     // -------------------------------------- delete --------------------------------------
 
 
+    public static void deleteAllMyMemberInfo(String id){
+        try {
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            session.delete("mappers.MemberInfoMapper.deleteAllMyMemberInfo", id);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error in deleteAllMyMemberInfo: " + e);
+        }
+    }
+
+
+
+
+
+    public static void deleteMemberById(String id) {
+        ArticleUtil.deleteAllMyComment(id);
+        ArticleUtil.deleteAllMyArticle(id);
+        LoginHistoryUtil.deleteAllMyLoginHistory(id);
+        UserMsgUtil.deleteAllMyMsg(id);
+        BandMemberUtil.deleteAllMyBandMember(id);
+        BandUtil.deleteAllMyBand(id);
+        deleteAllMyMemberInfo(id);
+    }
+
+
+
+
     // -------------------------------------- update --------------------------------------
 
     public static int updateMemberInfo(Member m) {

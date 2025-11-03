@@ -20,6 +20,12 @@
             window.alert("게시글 수정이 정상 처리되었습니다.");
         </script>
     </c:when>
+
+    <c:when test="${msg == 3}">
+        <script>
+            window.alert("댓글 삭제가 정상 처리되었습니다.");
+        </script>
+    </c:when>
 </c:choose>
 
 
@@ -62,7 +68,9 @@
             <c:choose>
                 <c:when test="${isPrivate && isNotMember}">
                     <h2>비공개 밴드입니다! 게시글을 확인하시려면 ${band.name} 밴드에 가입해주세요</h2>
-                    <a href="/band/join?bandNo=${band.no}"><button>가입하기</button></a>
+                    <a href="/band/join?bandNo=${band.no}">
+                        <button>가입하기</button>
+                    </a>
                 </c:when>
                 <c:when test="${isPrivate && !isApproved}">
                     <h2>아직 밴드 맴버가 아닙니다! 밴드 마스터가 신청을 수리할 때까지 기다려주세요</h2>
@@ -71,7 +79,9 @@
                     <h2>아직 게시글이 없어요!</h2>
                 </c:when>
                 <c:otherwise>
-                    <c:if test="${!isPrivate && !isApproved}"><a href="/band/join?bandNo=${band.no}"><button>가입하기</button></a></c:if>
+                    <c:if test="${!isPrivate && !isApproved}"><a href="/band/join?bandNo=${band.no}">
+                        <button>가입하기</button>
+                    </a></c:if>
                     <c:forEach items="${articles}" var="one">
                         <div>
                             <span>${one.writerId}</span>
@@ -88,7 +98,7 @@
                                 <a href="/article/edit?idx=${one.idx}&bandNo=${band.no}">
                                     <button>수정:✂</button>
                                 </a>
-                                    <button onclick="deleteConfirm(${one.idx})">삭제:❌</button>
+                                <button onclick="deleteConfirm(${one.idx})">삭제:❌</button>
                             </div>
                         </c:if>
                         <div>
@@ -113,7 +123,12 @@
                         <div>
                             <ul>
                                 <c:forEach items="${one.articleComments}" var="c">
-                                    <li>${c.writerId} : ${c.comment} - (${c.prettyWritingTime})</li>
+                                    <li>
+                                        ${c.writerId} : ${c.comment} - (${c.prettyWritingTime})
+                                        <c:if test="${c.writerId == member.id}">
+                                            <button type="button" onclick="commentDeleteConfirm(${c.idx}, '${c.writerId}')">삭제:❌</button>
+                                        </c:if>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -154,7 +169,13 @@
 
     function deleteConfirm(idx) {
         if (window.confirm("해당 게시글을 정말 삭제하시겠습니까?")) {
-                location.href = "/article/delete?idx="+idx+"&bandNo=${band.no}";
+            location.href = "/article/delete?idx=" + idx + "&bandNo=${band.no}";
+        }
+    }
+
+    function commentDeleteConfirm(idx, writerId) {
+        if (window.confirm("해당 댓글을 정말 삭제하시겠습니까?")) {
+            location.href = "/comment/delete?idx=" + idx + "&bandNo=${band.no}&writerId=" + writerId;
         }
     }
 </script>

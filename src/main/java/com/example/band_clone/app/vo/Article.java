@@ -17,8 +17,6 @@ public class Article {
     String writerId;
     String content;
     LocalDateTime wroteAt;
-    int viewCnt;
-    int likeCnt;
     int commentCnt;
 
     private String bandName;
