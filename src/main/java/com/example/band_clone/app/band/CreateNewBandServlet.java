@@ -49,6 +49,7 @@ public class CreateNewBandServlet extends HttpServlet {
         int result = BandUtil.createNewBand(band, nickname);
 
 
+        req.setAttribute("nickname", nickname);
         req.setAttribute("member", m);
         req.setAttribute("band", band);
         req.getRequestDispatcher("/band/create-band-success.jsp").forward(req, resp);

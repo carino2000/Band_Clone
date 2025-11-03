@@ -61,7 +61,7 @@
             <div class="text-center">
                 <h2>
                     밴드 개설이 완료되었습니다!<br/>
-                    <span class="text-blue">${member.nickname}</span> 님의 밴드 <b>[${band.name}]</b>
+                    <span class="text-blue">${nickname}</span> 님의 밴드 <b>[${band.name}]</b>
                 </h2>
             </div>
         </div>

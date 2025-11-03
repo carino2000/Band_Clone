@@ -75,13 +75,17 @@
                 <c:when test="${isPrivate && !isApproved}">
                     <h2>아직 밴드 맴버가 아닙니다! 밴드 마스터가 신청을 수리할 때까지 기다려주세요</h2>
                 </c:when>
+                <c:when test="${articleNotExists && isNotMember}">
+                    <h2>아직 게시글이 없어요!</h2>
+                    <a href="/band/join?bandNo=${band.no}"><button>가입하기</button></a>
+                </c:when>
                 <c:when test="${articleNotExists}">
                     <h2>아직 게시글이 없어요!</h2>
                 </c:when>
                 <c:otherwise>
-                    <c:if test="${!isPrivate && !isApproved}"><a href="/band/join?bandNo=${band.no}">
-                        <button>가입하기</button>
-                    </a></c:if>
+                    <c:if test="${!isPrivate && !isApproved}">
+                        <a href="/band/join?bandNo=${band.no}"><button>가입하기</button></a>
+                    </c:if>
                     <c:forEach items="${articles}" var="one">
                         <div>
                             <span>${one.writerId}</span>
