@@ -90,10 +90,6 @@
                 </div>
             </c:forEach>
         </div>
-        <div>
-            <p style="margin-top: 20px">----------------- 추천 밴드 노출-----------------</p>
-        </div>
-
 
     </div>
     <div style="flex: 1">
