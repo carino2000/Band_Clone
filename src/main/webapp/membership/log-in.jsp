@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: USER
@@ -21,6 +22,10 @@
             가제는 소프트웨어 개발자를 위한 지식공유 플랫폼입니다.
         </p>
         <form class="signup-form" action="/log-in" method="post">
+            <c:if test="${destination != null}">
+                <input type="hidden" value="${destination}" name="destination">
+            </c:if>
+
             <div>
                 <label for="id"><small>아이디</small></label>
                 <div class="mt-1">
@@ -63,9 +68,9 @@
         }
     }
 
-    function keepLoginConfirm(){
-        if(document.getElementById("keepLogin").checked){
-            if(!window.confirm("공용 PC에서는 사용을 삼가해주세요.")){
+    function keepLoginConfirm() {
+        if (document.getElementById("keepLogin").checked) {
+            if (!window.confirm("공용 PC에서는 사용을 삼가해주세요.")) {
                 document.getElementById("keepLogin").checked = false;
             }
         }

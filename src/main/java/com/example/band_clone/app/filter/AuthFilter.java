@@ -24,7 +24,9 @@ public class AuthFilter extends HttpFilter {
         if (m != null) {
             chain.doFilter(req, resp);
         } else {
-            resp.sendRedirect("/log-in");
+            String fullUrl = requestURI + (req.getQueryString() != null ? "?" + req.getQueryString() : "");
+
+            resp.sendRedirect("/log-in?destination="+fullUrl);
         }
     }
 }

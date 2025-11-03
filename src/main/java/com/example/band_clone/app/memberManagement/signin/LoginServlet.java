@@ -17,13 +17,17 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/membership/log-in.jsp").forward(req,resp);
+        String requestURI = req.getParameter("destination") == null ? null : req.getParameter("destination");
+        if (requestURI != null) {
+            req.setAttribute("destination", requestURI);
+        }// 여기부터 수정(물려서 원래 가려고 했던곳 보내주기)
+        req.getRequestDispatcher("/membership/log-in.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id") == null ? null : req.getParameter("id");
-        String pw =  req.getParameter("pw") == null ? null : req.getParameter("pw");
+        String pw = req.getParameter("pw") == null ? null : req.getParameter("pw");
         String keepLogin = req.getParameter("keepLogin");
         String ip = req.getRemoteAddr();
 
@@ -43,7 +47,12 @@ public class LoginServlet extends HttpServlet {
 
             //세션 쥐어주기
             req.getSession().setAttribute("logonUser", MemberUtil.selectMemberById(id));
-            resp.sendRedirect("/band-main");
+
+            if (req.getParameter("destination") != null) {
+                resp.sendRedirect(req.getParameter("destination"));
+            } else {
+                resp.sendRedirect("/band-main");
+            }
 
         } else { // 로그인 실패
             String mainError = ValidateUtil.setErrMsg(result);
@@ -51,6 +60,9 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("id", id);
             req.setAttribute("pw", pw);
             req.setAttribute("mainError", mainError);
+            if (req.getParameter("destination") != null) {
+                req.setAttribute("destination", req.getParameter("destination"));
+            }
 
             req.getRequestDispatcher("/membership/log-in-fail.jsp").forward(req, resp);
         }
