@@ -66,6 +66,10 @@ public class BandServlet extends HttpServlet {
             }
         }
 
+        int bandMemberCount = BandMemberUtil.selectBandMemberCount();
+
+
+        req.setAttribute("bandMemberCount" , bandMemberCount);
         req.setAttribute("memberList", memberList);
         req.setAttribute("isApproved", isApproved);
         req.setAttribute("isNotMember", isNotMember);

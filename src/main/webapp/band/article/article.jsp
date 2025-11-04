@@ -207,7 +207,7 @@
         <!-- LEFT: 가입된 멤버 목록 -->
         <aside class="col left">
             <div class="card">
-                <h4 style="margin:0 0 8px 0;">가입된 멤버</h4>
+                <h4 style="margin:0 0 8px 0;">가입된 멤버 (${bandMemberCount})</h4>
                 <ul class="member-list">
                     <c:forEach items="${memberList}" var="m">
                         <li class="member-item">

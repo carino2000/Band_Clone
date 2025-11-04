@@ -40,6 +40,12 @@
     <select id="select">
         select * from bandMember where bandNo=#{banNo} and isApproved=true;
     </select>
+    <!-- 밴드 멤버 수 -->
+    <select id="selectBandMemberCount" resultType="int">
+        select count(*) from bandMember where bandNo=16 and isApproved=true;
+    </select>
+
+
 
     <update id="updateApprovedBandMember" parameterType="map">
         update bandMember set isApproved=true where bandNo=#{bandNo} and memberId=#{id} and isApproved=false;
