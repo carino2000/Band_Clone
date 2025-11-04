@@ -109,14 +109,14 @@
                         <c:choose>
                             <c:when test="${!isNotMember && member.id == band.masterId}">
                                 <!-- 밴드 삭제: POST 폼 -->
-                                <form id="bandDeleteForm" action="<c:url value='/band/delete'/>" method="post" style="display:inline;">
+                                <form id="bandDeleteForm" action="<c:url value='/band-delete'/>" method="post" style="display:inline;">
                                     <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
                                     <input type="hidden" name="masterId" value="<c:out value='${band.masterId}'/>"/>
                                     <button type="button" class="btn warn" onclick="confirmAndSubmit('bandDeleteForm', '정말로 이 밴드를 삭제하시겠습니까? 삭제 시 복구할 수 없습니다.')">밴드 삭제</button>
                                 </form>
                             </c:when>
                             <c:when test="${!isNotMember && member.id != band.masterId}">
-                                <form id="bandLeaveForm" action="<c:url value='/band/leave'/>" method="post" style="display:inline;">
+                                <form id="bandLeaveForm" action="<c:url value='/band-leave'/>" method="post" style="display:inline;">
                                     <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
                                     <button type="button" class="btn ghost" onclick="confirmAndSubmit('bandLeaveForm', '정말로 이 밴드에서 탈퇴하시겠습니까?')">밴드 탈퇴</button>
                                 </form>
