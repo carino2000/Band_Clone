@@ -138,6 +138,18 @@
                     </div>
                 </div>
             </c:forEach>
+            <div style="padding: 1.5rem 0; margin-top: 2rem; text-align: center">
+                <form action="/band-search" method="get">
+                    <input type="hidden" name="keyword" value="${keyword}">
+                    <c:forEach var="i" begin="1" end="${maxPage}">
+                        <button
+                                type="submit"
+                                name="currentPage"
+                                value="${i}"
+                                class=${i == currentPage ? 'active-page-link' : ''}>${i}</button>
+                    </c:forEach>
+                </form>
+            </div>
 
             <c:if test="${empty keywordBands}">
                 <div style="padding:12px; margin-top:8px; border-radius:6px; border:1px dashed #eee; background:#fff;">

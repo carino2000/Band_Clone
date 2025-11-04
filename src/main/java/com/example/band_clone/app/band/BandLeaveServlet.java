@@ -27,6 +27,5 @@ public class BandLeaveServlet extends HttpServlet {
             resp.sendRedirect("/band-main");
         }
 
-
     }
 }

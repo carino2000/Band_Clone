@@ -99,6 +99,24 @@ public class BandUtil {
 
     }
 
+    public static List<Band> selectBandByKeywordAndPage(String keyword, int page) {
+        try {
+            List<Band> list = null;
+            String param = "%" + keyword + "%";
+            int offset = (page - 1) * 10;
+            Map map = Map.of("keyword", param, "offset", offset);
+
+            SqlSession session = MyBatisUtil.build().openSession(true);
+            list = session.selectList("mappers.BandMapper.selectBandByKeywordAndPage", map);
+            session.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectBandByKeywordAndPage: " + e);
+            return null;
+        }
+
+    }
+
     /*
        // select * from article where content like '%#{}%' order by wroteAt desc limit 5 offset 5;
     public static List<Article> selectByKeyword(String keyword, int page) {//수정중

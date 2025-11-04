@@ -10,17 +10,82 @@
     <link rel="stylesheet" href="/static/css/style.css"/>
     <style>
         /* 최소한의 레이아웃 보완: 기존 스타일 유지하면서 텍스트박스/버튼/정렬 안정화 */
-        .main { display:flex; gap:16px; max-width:1200px; margin:20px auto; padding:0 12px; box-sizing:border-box; }
-        .col { display:flex; flex-direction:column; gap:12px; }
-        .col.side { flex:1; min-width:220px; }
-        .col.center { flex:4; min-width:480px; }
-        .search-wrap { padding:0.5rem 0; text-align:center; }
-        .search-input { width:200px; max-width:100%; padding:8px 10px; box-sizing:border-box; border:1px solid #ddd; border-radius:6px; }
-        .btn-link { display:inline-block; padding:8px 12px; border-radius:6px; text-decoration:none; background:#1ec800; color:#fff; border:none; cursor:pointer; }
-        .article-item { padding:12px 0; border-bottom:1px solid #f0f0f0; }
-        .article-topic { font-size:12px; color:#777; margin-right:6px; margin-bottom: 3px}
-        .article-link { text-decoration:none; color:#222; }
-        @media (max-width:920px) { .main { flex-direction:column; } .col.side{min-width:unset;} }
+        .main {
+            display: flex;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col.side {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .col.center {
+            flex: 4;
+            min-width: 480px;
+        }
+
+        .search-wrap {
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 200px;
+            max-width: 100%;
+            padding: 8px 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            background: #1ec800;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .article-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #bababa;
+        }
+
+        .article-topic {
+            font-size: 12px;
+            color: #777;
+            margin-right: 6px;
+            margin-bottom: 3px
+        }
+
+        .article-link {
+            text-decoration: none;
+            color: #222;
+        }
+
+        @media (max-width: 920px) {
+            .main {
+                flex-direction: column;
+            }
+
+            .col.side {
+                min-width: unset;
+            }
+        }
 
         .recommend-list {
             list-style: none;
@@ -34,10 +99,10 @@
 
         .recommend-list a {
             display: inline-block;
-            width: 180px;             /* ✅ 표시할 최대 너비 지정 (조정 가능) */
-            white-space: nowrap;      /* 줄바꿈 방지 */
-            overflow: hidden;         /* 넘친 부분 숨기기 */
-            text-overflow: ellipsis;  /* ... 으로 표시 */
+            width: 180px; /* ✅ 표시할 최대 너비 지정 (조정 가능) */
+            white-space: nowrap; /* 줄바꿈 방지 */
+            overflow: hidden; /* 넘친 부분 숨기기 */
+            text-overflow: ellipsis; /* ... 으로 표시 */
             text-decoration: none;
             color: #333;
             font-size: 0.9rem;
@@ -50,13 +115,13 @@
             color: #007bff;
         }
 
-         .recommend-title {
-             font-size: 1rem;
-             color: #444;
-             margin-bottom: 0;
-             padding-bottom: 0.3rem;
-             border-bottom: 2px solid #ddd; /* ✅ h3 아래에 얇은 선 */
-         }
+        .recommend-title {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #ddd; /* ✅ h3 아래에 얇은 선 */
+        }
     </style>
 </head>
 <body>
@@ -112,26 +177,30 @@
             <p style="margin-top:20px; display:flex; align-items:center; gap:12px; padding:10px 14px; background:linear-gradient(90deg,#f6fff0,#eef9ea); border-radius:8px; border:1px solid #e6f4df; color:#1b5a20; font-weight:700; box-shadow:0 2px 6px rgba(27,90,32,0.06);">
                 <span style="font-size:18px; line-height:1;">📥</span>
                 <span style="font-size:15px; letter-spacing:-0.2px;">내가 만든 밴드</span>
-                <span style="margin-left:auto; font-size:13px; color:#6b7f6b; font-weight:500;"></span>
+                <span style="margin-left:auto; font-size:13px; color:#6b7f6b; font-weight:500;">[${member.id}]님이 창설한 밴드</span>
             </p>
             <c:forEach items="${myBands}" var="one">
                 <div class="article-item">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
-                                <span class="article-topic"><c:out value="${topic}"/></span>
-                            </c:forEach>
+                    <a href="<c:url value='/band'/>?no=${one.no}" class="article-link">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
                             <div>
-                                <span><c:out value="${one.masterId}"/>님의 밴드</span>
-                                <span>&middot; <small><c:out value="${one.prettyCreatedAt}"/>에 창설됨</small></span>
+                                <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
+                                    <span class="article-topic"><c:out value="${topic}"/></span>
+                                </c:forEach>
+                                <div>
+                                    <label for="one.name">
+                                        <span><c:out value="${one.masterId}"/>님의 밴드</span>
+                                        <span>&middot; <small><c:out
+                                                value="${one.prettyCreatedAt}"/>에 창설됨</small></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <span style="font-size:1.1rem; font-weight:500;" id="one.name"><br/><c:out
+                                        value="${one.name}"/></span>
                             </div>
                         </div>
-                        <div>
-                            <a href="<c:url value='/band'/>?no=${one.no}" class="article-link">
-                                <span style="font-size:1.1rem; font-weight:500;"><br/><c:out value="${one.name}"/></span>
-                            </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </c:forEach>
             <c:if test="${empty myBands}">
@@ -149,25 +218,25 @@
 
             <c:forEach items="${joinedBands}" var="one">
                 <div class="article-item">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
-                                <span class="article-topic"><c:out value="${topic}"/></span>
-                                <c:if test="${!st.last}"><span class="article-topic">|</span></c:if>
-                            </c:forEach>
+                    <a href="<c:url value='/band'/>?no=${one.no}" class="article-link">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
                             <div>
-                                <span><c:out value="${one.masterId}"/>님의 밴드</span>
-                                <span>&middot; <small><c:out value="${one.prettyCreatedAt}"/>에 창설
+                                <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
+                                    <span class="article-topic"><c:out value="${topic}"/></span>
+                                    <c:if test="${!st.last}"><span class="article-topic">|</span></c:if>
+                                </c:forEach>
+                                <div>
+                                    <span><c:out value="${one.masterId}"/>님의 밴드</span>
+                                    <span>&middot; <small><c:out value="${one.prettyCreatedAt}"/>에 창설
                                     <c:if test="${!one.approved}"> (가입 승인 대기 중)</c:if>
                                 </small></span>
+                                </div>
+                            </div>
+                            <div>
+                                <span style="font-size:1.1rem; font-weight:500;"><c:out value="${one.name}"/></span>
                             </div>
                         </div>
-                        <div >
-                            <a href="<c:url value='/band'/>?no=${one.no}" class="article-link">
-                                <span style="font-size:1.1rem; font-weight:500;"><c:out value="${one.name}"/></span>
-                            </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </c:forEach>
             <c:if test="${empty joinedBands}">

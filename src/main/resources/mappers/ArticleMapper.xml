@@ -34,6 +34,9 @@
     <update id="updateArticle" parameterType="Article">
         update article set content=#{content} where idx=#{idx}
     </update>
+    <update id="updateArticleCommentCnt" parameterType="int">
+        update article set commentCnt=(select count(*) from articleComment where articleNo=#{articleNo}) where idx=#{articleNo}
+    </update>
 
 
 
@@ -63,6 +66,8 @@
     <delete id="deleteArticleByBandNo" parameterType="int">
         delete from article where bandNo=#{bandNo}
     </delete>
+
+
 
 
 

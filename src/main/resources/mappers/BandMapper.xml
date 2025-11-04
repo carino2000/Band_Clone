@@ -25,6 +25,11 @@
     <select id="selectBandByKeyword" resultType="Band" parameterType="String" >
         select * from band where name like #{keyword} or description like #{keyword} order by createdAt desc;
     </select>
+    <select id="selectBandByKeywordAndPage" parameterType="map" resultType="Band">
+        select * from band where name like #{keyword} or description like #{keyword} order by no desc limit 10 offset #{offset};
+    </select>
+
+
 
 
     <delete id="deleteAllMyBand" parameterType="string">

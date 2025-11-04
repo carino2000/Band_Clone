@@ -1,96 +1,177 @@
-<%-- my-loginHistory.jsp (fn 태그 미사용 버전) --%>
+<%-- my-loginHistory.jsp (간단/가벼운 버전) --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8"/>
-    <title>my login history</title>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>내 접속 기록</title>
+
     <style>
-        /* 최소 스타일 (연두/초록 테마) */
-        body { background:#f6fff6; color:#083214; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif; margin:0; padding:0; }
-        .main { display:flex; gap:16px; max-width:1100px; margin:20px auto; padding:0 12px; box-sizing:border-box; align-items:flex-start; }
-        .col { display:flex; flex-direction:column; gap:12px; }
-        .side { flex:1; min-width:200px; }
-        .center { flex:4; min-width:520px; }
+        /* 최소한의 깔끔한 스타일 (그린 계열 유지) */
+        :root {
+            --g-dark: #083214;
+            --g-mid: #1a7f2a;
+            --g-muted: #557a54;
+            --bg: #f6fff6;
+            --accent: #2bd34c;
+        }
 
-        .banner { height:120px; border-radius:10px; background:linear-gradient(90deg,#f0fff0,#e8f7e8); display:flex; align-items:center; justify-content:center; color:#1a7f2a; font-weight:700; margin-bottom:12px; border:1px solid rgba(15,90,20,0.04); }
-        h2 { margin:8px 0; color:#0c3e16; }
+        html, body {
+            height: 100%;
+        }
 
-        .article-item { padding:12px; border-radius:8px; background:linear-gradient(180deg,#ffffff,#fbfff9); border:1px solid rgba(18,80,20,0.04); margin-bottom:8px; }
-        .meta { color:#2d6f2f; font-weight:700; }
-        .sub { color:#557a54; font-size:13px; margin-top:6px; }
+        body {
+            margin: 0;
+            font-family: Arial, "Noto Sans KR", sans-serif;
+            background: var(--bg);
+            color: var(--g-dark);
+        }
 
-        .pager { padding:1.5rem 0; margin-top:2rem; text-align:center; }
-        .pager button { margin:0 6px; padding:8px 12px; border-radius:8px; border:1px solid transparent; background:transparent; cursor:pointer; color:#154f22; font-weight:700;}
-        .pager button:hover{ background:#eefbe9; }
-        .pager .active { background:linear-gradient(180deg,#2bd34c,#1aa61f); color:#fff; box-shadow:0 6px 14px rgba(26,166,31,0.12); }
+        .wrap {
+            max-width: 960px;
+            margin: 18px auto;
+            padding: 12px;
+            box-sizing: border-box;
+        }
 
-        .empty { padding:16px; text-align:center; color:#6b8a6b; }
-        @media (max-width:920px){ .main{ flex-direction:column; } .side{min-width:unset;} }
+        .banner {
+            height: 80px;
+            background: #eefef0;
+            border: 1px solid #e6f2e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--g-mid);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: 1.1rem;
+            color: var(--g-dark);
+            margin: 8px 0 12px 0;
+        }
+
+        .list {
+            background: #fff;
+            border: 1px solid #e6efe6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f6f0;
+            box-sizing: border-box;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ip {
+            font-weight: 700;
+            color: var(--g-mid);
+        }
+
+        .time {
+            color: var(--g-muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .ua {
+            color: var(--g-muted);
+            font-size: 13px;
+            max-width: 360px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: right;
+        }
+
+        .pager {
+            text-align: center;
+            padding: 14px 8px;
+        }
+
+        .pager button {
+            margin: 0 6px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--g-dark);
+        }
+
+        .pager button.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: #1aa61f;
+        }
+
+        @media (max-width: 640px) {
+            .row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .ua {
+                max-width: 100%;
+                text-align: left;
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 <body>
 <%@ include file="/template/header.jspf" %>
 
-<div class="main">
-    <div class="side">
-        <!-- 좌측 빈공간(기존 구조 유지) -->
-    </div>
+<div class="wrap" role="main" aria-labelledby="titleMyHistory">
+    <div class="banner">내 접속 기록</div>
 
-    <div class="center">
-        <div class="banner">이미지 베너</div>
+    <h1 id="titleMyHistory"><c:out value="${member.nickname != null ? member.nickname : member.id}"/>님의 접속 기록</h1>
 
-        <h2><c:out value="${member.id}"/>님의 접속 기록</h2>
-
-        <div>
-            <c:forEach items="${history}" var="one">
-                <div class="article-item">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <div class="meta">IP : <c:out value="${one.loginIp}"/></div>
-                            <div class="sub">&middot; <c:out value="${one.prettyLoginAt}"/></div>
-                        </div>
-                        <div class="sub">
-                            <c:choose>
-                                <c:when test="${not empty one.userAgent}">
-                                    <c:out value="${one.userAgent}"/>
-                                </c:when>
-                                <c:otherwise>
-                                    -
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
+    <div class="list" role="region" aria-label="접속기록 목록">
+        <!-- 서블릿에서 history 리스트를 항상 넣어준다고 가정 -->
+        <c:forEach items="${history}" var="one">
+            <div class="row" role="article">
+                <div class="left">
+                    <div class="ip">IP: <c:out value="${one.loginIp}"/></div>
+                    <div class="time"><c:out value="${one.prettyLoginAt}"/> - <small>(<c:out value="${one.loginAt}"/>)</small></div>
                 </div>
-            </c:forEach>
-
-            <c:if test="${empty history}">
-                <div class="empty">로그인 기록이 없습니다.</div>
-            </c:if>
-        </div>
-
-        <div class="pager" role="navigation" aria-label="페이지 네비게이션">
-            <c:forEach var="i" begin="1" end="${maxPage}">
-                <c:url var="pageUrl" value="/my-loginHistory">
-                    <c:param name="page" value="${i}"/>
-                </c:url>
-
-                <c:choose>
-                    <c:when test="${i == currentPage}">
-                        <button type="button" class="active" onclick="location.href='${pageUrl}'"><c:out value="${i}"/></button>
-                    </c:when>
-                    <c:otherwise>
-                        <button type="button" onclick="location.href='${pageUrl}'"><c:out value="${i}"/></button>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </div>
+            </div>
+        </c:forEach>
     </div>
 
-    <div class="side">
-        <!-- 우측 빈공간(기존 구조 유지) -->
+    <div class="pager" role="navigation" aria-label="페이지 네비게이션">
+        <c:forEach var="i" begin="1" end="${maxPage}">
+            <c:url var="pageUrl" value="/my-loginHistory">
+                <c:param name="page" value="${i}"/>
+            </c:url>
+
+            <c:if test="${i == currentPage}">
+                <button type="button" class="active" aria-current="page" onclick="location.href='${pageUrl}'"><c:out
+                        value="${i}"/></button>
+            </c:if>
+            <c:if test="${i != currentPage}">
+                <button type="button" onclick="location.href='${pageUrl}'"><c:out value="${i}"/></button>
+            </c:if>
+        </c:forEach>
     </div>
 </div>
 

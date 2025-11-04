@@ -23,7 +23,7 @@ public class MyLoginHistoryServlet extends HttpServlet {
         int maxPage = history.size() % 20 == 0 ? history.size() / 20 : history.size() / 20 + 1;
 
         int page = req.getParameter("page") == null ? 1 : Integer.parseInt(req.getParameter("page"));
-//
+
 
         req.setAttribute("currentPage", page);
         req.setAttribute("maxPage", maxPage);

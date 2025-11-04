@@ -21,6 +21,7 @@ public class ArticleUtil {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
             result = sqlSession.insert("mappers.ArticleMapper.insertCommentByArticleNo", articleComment);
             sqlSession.close();
+            result = updateArticleCommentCnt(articleComment.getArticleNo());
             return result;
         } catch (Exception e) {
             System.out.println("Error in insertCommentByArticleNo : " + e);
@@ -214,5 +215,18 @@ public class ArticleUtil {
         }
     }
 
+
+    public static int updateArticleCommentCnt(int aritcleNo) {
+        int result = -1;
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            result = sqlSession.update("mappers.ArticleMapper.updateArticleCommentCnt", aritcleNo);
+            sqlSession.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in updateArticleCommentCnt : " + e);
+            return result;
+        }
+    }
 
 }
