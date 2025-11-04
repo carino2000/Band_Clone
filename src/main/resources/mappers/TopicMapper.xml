@@ -13,11 +13,11 @@
         asc;
     </select>
 
-    <select id="recommendBandByMostTopic" parameterType="string" resultType="Band">
+    <select id="recommendBandByMostTopic" parameterType="map" resultType="Band">
         select band.*, temp.cnt
         from band join ( select bandNo , count(*) as cnt from bandMember group by bandNo) as temp on band.no =
         temp.bandNo
-        where band.topic like '%programming%' AND band.no NOT IN (SELECT bandNo FROM bandMember WHERE memberId = 'qwer')
+        where band.topic like #{mostTopic} AND band.no NOT IN (SELECT bandNo FROM bandMember WHERE memberId = #{id})
         order by temp.cnt desc limit 5;
     </select>
 

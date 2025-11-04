@@ -312,20 +312,24 @@
 
                     <c:otherwise>
                         <c:forEach items="${articles}" var="one" varStatus="st">
-                            <div class="card post" style="margin-bottom:12px;">
-                                <div style="display: flex; justify-content: space-between">
-                                    <div class="post-meta" style="padding-left: 20px">
-                                        <div><strong><c:out value="${one.writerId}"/></strong></div>
-                                        <div class="muted"><c:out value="${one.prettyWroteAt}"/></div>
+                            <div class="card post" style="margin: 24px auto; padding: 20px; max-width: 800px; border-radius: 12px; background:#fff; box-shadow:0 3px 10px rgba(0,0,0,0.04);">
+
+                                <!-- 작성자 정보 + 댓글 수 -->
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <div class="post-meta" style="padding-left: 8px;">
+                                        <div style="font-weight:600; font-size:15px;"><c:out value="${one.writerId}"/></div>
+                                        <div class="muted" style="font-size:13px; margin-top:3px;"><c:out value="${one.prettyWroteAt}"/></div>
                                     </div>
-                                    <div class="muted" style="margin-right: 20px">💬${one.commentCnt}</div>
+                                    <div class="muted" style="margin-right: 8px; font-size:14px;">💬 ${one.commentCnt}</div>
                                 </div>
-                                <div style="background:#fafafa; border:1px solid #e6e6e6; border-radius:10px; padding:14px 18px; margin-top:5px; font-size:18px; line-height:1.6; color:#333; word-break:keep-all; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+
+                                <!-- 본문 -->
+                                <div style="background:#fafafa; border:1px solid #e6e6e6; border-radius:10px; padding:16px 20px; margin-top:10px; font-size:17px; line-height:1.6; color:#333; word-break:keep-all; box-shadow:0 4px 10px rgba(0,0,0,0.02);">
                                     <c:out value="${one.content}"/>
                                 </div>
 
-
-                                <div style="margin-top:10px; display:flex; gap:8px; justify-content:flex-end; align-items:center;">
+                                <!-- 수정/삭제 버튼 -->
+                                <div style="margin-top:12px; display:flex; gap:10px; justify-content:flex-end;">
                                     <c:if test="${member.id == one.writerId}">
                                         <a class="btn ghost"
                                            href="<c:url value='/article/edit'><c:param name='idx' value='${one.idx}'/><c:param name='bandNo' value='${band.no}'/></c:url>">수정</a>
@@ -342,15 +346,15 @@
                                     </c:if>
                                 </div>
 
-                                    <%-- 댓글 입력(멤버만) --%>
+                                <!-- 댓글 입력 -->
                                 <c:if test="${!isNotMember}">
-                                    <div style="margin-top:12px;">
+                                    <div style="margin-top:16px; padding:10px 4px 0;">
                                         <form id="newComment${one.idx}" action="/band" method="post"
-                                              style="display:flex; gap:8px; align-items:center;">
+                                              style="display:flex; gap:10px; align-items:center;">
                                             <input type="hidden" name="articleNo" value="<c:out value='${one.idx}'/>"/>
                                             <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
                                             <input type="text" name="comment" placeholder="댓글을 남겨보세요"
-                                                   style="flex:1; padding:8px 10px; border-radius:8px; border:1px solid #e6e6e6;"/>
+                                                   style="flex:1; padding:8px 10px; border-radius:8px; border:1px solid #ddd; font-size:14px;"/>
                                             <button type="button" class="btn primary"
                                                     onclick="document.getElementById('newComment${one.idx}').submit();">
                                                 작성
@@ -359,30 +363,27 @@
                                     </div>
                                 </c:if>
 
-                                    <%-- 댓글 목록 (각 댓글에 삭제 폼 포함, 작성자만 삭제 버튼 노출) --%>
-                                <div style="margin-top:10px;">
-                                    <ul class="comment-list">
+                                <!-- 댓글 목록 -->
+                                <div style="margin-top:16px; border-top:1px solid #f0f0f0; padding-top:10px;">
+                                    <ul class="comment-list" style="padding-left: 10px; list-style:none; margin:0;">
                                         <c:forEach items="${one.articleComments}" var="cmt">
-                                            <li class="comment-item">
+                                            <li class="comment-item" style="margin-bottom:10px; padding:6px 0; border-bottom:1px dashed #f1f1f1;">
                                                 <div>
                                                     <strong><c:out value="${cmt.writerId}"/></strong>
-                                                    <span class="muted" style="margin-left:8px;">(<c:out
-                                                            value="${cmt.prettyWritingTime}"/>)</span>
-                                                    <div style="margin-top:6px;"><c:out value="${cmt.comment}"/></div>
+                                                    <span class="muted" style="margin-left:8px; font-size:13px;">(<c:out value="${cmt.prettyWritingTime}"/>)</span>
+                                                    <div style="margin-top:6px; font-size:14px; line-height:1.4;"><c:out value="${cmt.comment}"/></div>
                                                 </div>
 
-                                                <div>
+                                                <div style="margin-top:4px; text-align:right;">
                                                     <c:if test="${cmt.writerId == member.id}">
                                                         <form id="deleteCommentForm${cmt.idx}"
                                                               action="<c:url value='/comment/delete'/>" method="post"
                                                               style="display:inline;">
-                                                            <input type="hidden" name="idx"
-                                                                   value="<c:out value='${cmt.idx}'/>"/>
-                                                            <input type="hidden" name="bandNo"
-                                                                   value="<c:out value='${band.no}'/>"/>
-                                                            <input type="hidden" name="writerId"
-                                                                   value="${cmt.writerId}">
+                                                            <input type="hidden" name="idx" value="<c:out value='${cmt.idx}'/>"/>
+                                                            <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
+                                                            <input type="hidden" name="writerId" value="${cmt.writerId}"/>
                                                             <button type="button" class="btn warn"
+                                                                    style="padding:4px 10px; font-size:13px;"
                                                                     onclick="confirmAndSubmit('deleteCommentForm${cmt.idx}', '해당 댓글을 삭제하시겠습니까?')">
                                                                 삭제
                                                             </button>
@@ -393,7 +394,7 @@
                                         </c:forEach>
 
                                         <c:if test="${empty one.articleComments}">
-                                            <li class="muted">댓글이 없습니다.</li>
+                                            <li class="muted" style="padding:8px 4px; color:#777;">댓글이 없습니다.</li>
                                         </c:if>
                                     </ul>
                                 </div>
@@ -401,6 +402,7 @@
                             </div>
                             <!-- .post -->
                         </c:forEach>
+
                     </c:otherwise>
                 </c:choose>
             </div>

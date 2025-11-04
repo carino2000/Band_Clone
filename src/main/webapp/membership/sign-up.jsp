@@ -56,8 +56,8 @@
             <div class="brand">BandClone</div>
         </div>
 
-        <h2 id="signupTitle">가제에 오신 것을 환영합니다</h2>
-        <div class="lead">소프트웨어 개발자를 위한 지식공유 플랫폼에 가입하세요.</div>
+        <h2 id="signupTitle">Band Clone에 오신 것을 환영합니다!</h2>
+        <div class="lead">커뮤니티를 통해 당신의 견문을 넓혀보세요</div>
 
         <form id="signupForm" action="<c:url value='/sign-up'/>" method="post" autocomplete="off" novalidate>
             <div class="field">

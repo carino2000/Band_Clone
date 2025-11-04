@@ -69,8 +69,10 @@ public class TopicUtil {
     public static List<Band> recommendBandByMostTopic(String id) {
         try {
             String mostTopic = "%" + findMyMostTopic(id) + "%";
+            Map map = Map.of("id", id, "mostTopic", mostTopic);
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            List<Band> list = sqlSession.selectList("mappers.TopicMapper.recommendBandByMostTopic", mostTopic);
+            List<Band> list = sqlSession.selectList("mappers.TopicMapper.recommendBandByMostTopic", map);
+
             if (list.size() < 5) {
                 List<Band> allBand = BandUtil.selectAllBandsExceptMyBands(id);
                 int listSize = list.size();
