@@ -76,9 +76,12 @@ public class TopicUtil {
                 int listSize = list.size();
                 job:
                 for (int i = 0; i < 5 - listSize; i++) {
-                    int num = (int)(Math.random() * allBand.size());
-                    for(Band band : list) {
-                        if(band.getName().equals(allBand.get(num).getName())) {
+                    if ((5 - listSize) > allBand.size()) {
+                        break;
+                    }
+                    int num = (int) (Math.random() * allBand.size());
+                    for (Band band : list) {
+                        if (band.getName().equals(allBand.get(num).getName())) {
                             i--;
                             continue job;
                         }

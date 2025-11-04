@@ -15,7 +15,7 @@ import java.io.IOException;
 @WebServlet("/band-leave")
 public class BandLeaveServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member m = (Member) (req.getSession().getAttribute("logonUser"));
         int bandNo = Integer.parseInt(req.getParameter("bandNo"));
 
