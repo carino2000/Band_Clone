@@ -11,6 +11,18 @@ public class UserMsgUtil {
 
 // -------------------------------------- insert --------------------------------------
 
+    public static int sendMessenger(UserMsg msg) {
+        int result = -1;
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            result = sqlSession.insert("mappers.UserMsgMapper.sendMessenger", msg);
+            sqlSession.close();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Error in sendMessenger : " + e);
+            return result;
+        }
+    }
 
 
 // -------------------------------------- select --------------------------------------

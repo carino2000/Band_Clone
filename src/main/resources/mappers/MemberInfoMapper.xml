@@ -15,6 +15,9 @@
     <select id="selectMemberByNickName" parameterType="string" resultType="Member">
         select * from memberInfo where nickname=#{id}
     </select>
+    <select id="selectAllMembersExceptMe" parameterType="string" resultType="Member">
+        select * from memberInfo where id not in (#{id});
+    </select>
 
 
     <update id="updateMemberInfo" parameterType="Member">

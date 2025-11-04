@@ -7,6 +7,9 @@
     <insert id="insertUserMsg" parameterType="UserMsg">
         insert into userMsg(writerId, recipientId, content) values(#{writerId}, #{recipientId}, #{content})
     </insert>
+    <insert id="sendMessenger" parameterType="UserMsg">
+        insert into userMsg(writerId, recipientId, content) values(#{writerId}, #{recipientId}, #{content})
+    </insert>
 
 
     <select id="selectAllMyMsgById" parameterType="string" resultType="UserMsg">

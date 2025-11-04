@@ -1,9 +1,6 @@
 package com.example.band_clone.app.band;
 
-import com.example.band_clone.app.util.BandMemberUtil;
-import com.example.band_clone.app.util.BandUtil;
-import com.example.band_clone.app.util.NotificationUtil;
-import com.example.band_clone.app.util.UserMsgUtil;
+import com.example.band_clone.app.util.*;
 import com.example.band_clone.app.vo.Band;
 import com.example.band_clone.app.vo.BandMember;
 import com.example.band_clone.app.vo.Member;
@@ -25,7 +22,9 @@ public class NotificationServlet extends HttpServlet {
 
         List<BandMember> requestList = NotificationUtil.selectAllRequest(m.getId());
         List<UserMsg> magList = UserMsgUtil.selectAllMyMsgById(m.getId());
+        List<Member> memberList = MemberUtil.selectAllMembersExceptMe(m.getId());
 
+        req.setAttribute("memberList", memberList);
         req.setAttribute("msgList", magList);
         req.setAttribute("requestList", requestList);
         req.getRequestDispatcher("/band/my-notice.jsp").forward(req, resp);

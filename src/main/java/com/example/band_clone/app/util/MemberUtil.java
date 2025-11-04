@@ -3,6 +3,7 @@ package com.example.band_clone.app.util;
 import com.example.band_clone.app.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -64,6 +65,7 @@ public class MemberUtil {
         }
     }
 
+
     public static Member selectMemberByNickName(String nickname) {
         try {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
@@ -72,6 +74,19 @@ public class MemberUtil {
             return member;
         } catch (Exception e) {
             System.out.println("Error in select member by nickname : " + e);
+            return null;
+        }
+    }
+
+
+    public static List<Member> selectAllMembersExceptMe(String id) {
+        try {
+            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+            List<Member> list = sqlSession.selectList("mappers.MemberInfoMapper.selectAllMembersExceptMe", id);
+            sqlSession.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println("Error in selectAllMembersExceptMe : " + e);
             return null;
         }
     }
