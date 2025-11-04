@@ -26,7 +26,7 @@ public class ArticleDeleteServlet extends HttpServlet {
         int r2 = 0;
         if (article != null && m.getId().equals(article.getWriterId())) {// 여기서부터
             r1 = ArticleUtil.deleteArticleCommentByArticleIdx(idx);
-            r2 = ArticleUtil.deleteArticleByidx(idx);
+            r2 = ArticleUtil.deleteArticleByIdx(idx);
             System.out.println("ArticleDeleteServlet : r = " + r1);
             System.out.println("ArticleDeleteServlet : r = " + r2);
         } else {

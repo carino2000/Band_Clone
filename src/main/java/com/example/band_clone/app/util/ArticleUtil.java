@@ -120,14 +120,14 @@ public class ArticleUtil {
     }
 
 
-    public static int deleteArticleByidx(int idx) {
+    public static int deleteArticleByIdx(int idx) {
         int result = -1;
         try {
             SqlSession session = MyBatisUtil.build().openSession(true);
-            result = session.delete("mappers.ArticleMapper.deleteArticleByidx", idx);
+            result = session.delete("mappers.ArticleMapper.deleteArticleByIdx", idx);
             session.close();
         } catch (Exception e) {
-            System.out.println("Error in deleteArticleByidx: " + e);
+            System.out.println("Error in deleteArticleByIdx: " + e);
         }
         return result;
     }

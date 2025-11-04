@@ -53,7 +53,7 @@ public class TopicUtil {
                 }
             }
 
-            if(mostTopic.equals("etc")){
+            if (mostTopic.equals("etc")) {
                 mostTopic = subTopic;
             }
             sqlSession.close();
@@ -68,9 +68,24 @@ public class TopicUtil {
 
     public static List<Band> recommendBandByMostTopic(String id) {
         try {
-            String mostTopic = findMyMostTopic(id);
+            String mostTopic = "%" + findMyMostTopic(id) + "%";
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
             List<Band> list = sqlSession.selectList("mappers.TopicMapper.recommendBandByMostTopic", mostTopic);
+            if (list.size() < 5) {
+                List<Band> allBand = BandUtil.selectAllBandsExceptMyBands(id);
+                int listSize = list.size();
+                job:
+                for (int i = 0; i < 5 - listSize; i++) {
+                    int num = (int)(Math.random() * allBand.size());
+                    for(Band band : list) {
+                        if(band.getName().equals(allBand.get(num).getName())) {
+                            i--;
+                            continue job;
+                        }
+                    }
+                    list.add(allBand.get(num));
+                }
+            }
             sqlSession.close();
             return list;
         } catch (Exception e) {

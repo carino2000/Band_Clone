@@ -40,7 +40,7 @@
     <delete id="deleteArticleCommentByArticleIdx" parameterType="int">
         delete from articleComment where articleNo=#{idx}
     </delete>
-    <delete id="deleteArticleByidx" parameterType="int">
+    <delete id="deleteArticleByIdx" parameterType="int">
         delete from article where idx=#{idx}
     </delete>
     <delete id="deleteMyCommentByIdx" parameterType="int">
