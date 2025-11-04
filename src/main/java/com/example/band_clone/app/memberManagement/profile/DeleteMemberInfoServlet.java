@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet("/delete-membership")
 public class DeleteMemberInfoServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member m = (Member) req.getSession().getAttribute("logonUser");
 
         MemberUtil.deleteMemberById(m.getId());

@@ -22,7 +22,7 @@ public class NotificationServlet extends HttpServlet {
 
         List<BandMember> requestList = NotificationUtil.selectAllRequest(m.getId());
         List<UserMsg> magList = UserMsgUtil.selectAllMyMsgById(m.getId());
-        List<Member> memberList = MemberUtil.selectAllMembersExceptMe(m.getId());
+        List<Member> memberList = MemberUtil.selectMyFriend(m.getId());
 
         req.setAttribute("memberList", memberList);
         req.setAttribute("msgList", magList);

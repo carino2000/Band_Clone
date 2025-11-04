@@ -15,8 +15,17 @@
     <select id="selectMemberByNickName" parameterType="string" resultType="Member">
         select * from memberInfo where nickname=#{id}
     </select>
-    <select id="selectAllMembersExceptMe" parameterType="string" resultType="Member">
-        select * from memberInfo where id not in (#{id});
+    <select id="selectMyFriend" parameterType="string" resultType="Member">
+        SELECT *
+        FROM memberInfo
+        WHERE id IN (
+        SELECT bm.memberId
+        FROM bandMember bm
+        WHERE bm.bandNo IN (
+        SELECT bandNo
+        FROM bandMember
+        WHERE memberId = #{id})
+        AND bm.memberId!=#{id});
     </select>
 
 

@@ -23,15 +23,6 @@ public class JoinBandServlet extends HttpServlet {
         req.setAttribute("band", BandUtil.selectBandByNo(bandNo));
         req.setAttribute("member", m);
         req.getRequestDispatcher("/band/join-form.jsp").forward(req, resp);
-        /*
-            멤버 정보 불러오기
-            밴드 가입 서류 작성하기
-            서브밋
-            밴드.마스터 맴버에게 신청 보냄
-
-            확인하면 해당 맴버 정보, 서류 출력
-            수락하면 밴드맴버 테이블에 반영
-         */
     }
 
     @Override
@@ -60,7 +51,6 @@ public class JoinBandServlet extends HttpServlet {
             req.setAttribute("nickname", nickname);
             req.getRequestDispatcher("/band/request-success.jsp").forward(req, resp);
         }
-        //여기서부터 짜기
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.band_clone.app.util;
 
+import com.example.band_clone.app.vo.BandMember;
 import com.example.band_clone.app.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
@@ -79,14 +80,14 @@ public class MemberUtil {
     }
 
 
-    public static List<Member> selectAllMembersExceptMe(String id) {
+    public static List<Member> selectMyFriend(String id) {
         try {
             SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            List<Member> list = sqlSession.selectList("mappers.MemberInfoMapper.selectAllMembersExceptMe", id);
+            List<Member> list = sqlSession.selectList("mappers.MemberInfoMapper.selectMyFriend", id);
             sqlSession.close();
             return list;
         } catch (Exception e) {
-            System.out.println("Error in selectAllMembersExceptMe : " + e);
+            System.out.println("Error in selectMyFriend : " + e);
             return null;
         }
     }

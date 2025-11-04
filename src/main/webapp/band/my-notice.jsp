@@ -494,7 +494,7 @@
     <div class="col side" style="margin-top: 50px">
         <div class="card" style="padding:12px;">
             <h3 class="recommend-title">
-                메시지 보내기
+                친구에게 메시지 보내기
             </h3>
 
             <ul class="recommend-list">
