@@ -55,18 +55,6 @@ public class BandMemberUtil {
         }
     }
 
-    public  static int selectBandMemberCount() {
-        try {
-            SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-            int cnt = sqlSession.selectOne("mappers.BandMemberMapper.selectBandMemberCount");
-            sqlSession.close();
-            return cnt;
-        } catch (Exception e) {
-            System.out.println("Error in selectBandMemberCount : " + e);
-            return 0;
-        }
-    }
-
 
 // -------------------------------------- delete --------------------------------------
 

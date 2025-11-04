@@ -66,7 +66,7 @@ public class BandServlet extends HttpServlet {
             }
         }
 
-        int bandMemberCount = BandMemberUtil.selectBandMemberCount();
+        int bandMemberCount = memberList.size();
 
 
         req.setAttribute("bandMemberCount" , bandMemberCount);
@@ -110,6 +110,7 @@ public class BandServlet extends HttpServlet {
                     memberList.add(b);
                 }
             }
+
 
             req.setAttribute("memberList", memberList);
             req.setAttribute("isApproved", req.getParameter("isApproved"));
