@@ -128,28 +128,7 @@
             </div>
         </main>
 
-        <!-- RIGHT: Top Writers (간단 위젯 영역) -->
-        <aside class="right col">
-            <div class="card">
-                <h4 style="margin:0 0 8px 0;">Top Writers</h4>
-                <ul style="list-style:none; padding-left:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-                    <c:forEach items="${topWriters}" var="w">
-                        <li style="display:flex; gap:8px; align-items:center;">
-                            <div style="width:36px; height:36px; border-radius:6px; background:#eefbe9; display:flex; align-items:center; justify-content:center; font-weight:700; color:#1a7f2a;">
-                                <c:out value="${fn:substring(w.nickname,0,1)}"/>
-                            </div>
-                            <div>
-                                <div style="font-weight:700;"><c:out value="${w.userId}"/></div>
-                                <div class="muted">(<c:out value="${w.nickname}"/>)</div>
-                            </div>
-                        </li>
-                    </c:forEach>
-                    <c:if test="${empty topWriters}">
-                        <li class="muted">Top Writers 정보가 없습니다.</li>
-                    </c:if>
-                </ul>
-            </div>
-        </aside>
+
     </div>
 </div>
 

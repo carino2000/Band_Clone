@@ -56,8 +56,8 @@
                             <div id="userDropdown" role="menu" aria-hidden="true"
                                  style="display:none; position:absolute; right:0; top:44px; min-width:160px; background:#fff; border:1px solid #eee; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,0.06); overflow:hidden; z-index:80;">
                                 <a href="<c:url value='/my/notice'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 알림</a>
-                                <a href="<c:url value='/my/bands'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 밴드</a>
-                                <a href="<c:url value='/settings'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">설정</a>
+                                <a href="<c:url value='/band-main'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 밴드</a>
+                                <a href="<c:url value='/my-page'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">설정</a>
                                 <form id="logoutForm" action="<c:url value='/log-out'/>" method="post" style="margin:0;">
                                     <button type="button" onclick="logoutConfirm()" style="width:100%; text-align:left; padding:10px 12px; border:none; background:transparent; cursor:pointer; color:#c33;">로그아웃</button>
                                 </form>
