@@ -15,8 +15,6 @@
         .col { display:flex; flex-direction:column; gap:12px; }
         .col.side { flex:1; min-width:220px; }
         .col.center { flex:4; min-width:480px; }
-        .recommend-list { list-style:none; padding:0; margin:0; }
-        .recommend-list li { margin-top:1rem; }
         .search-wrap { padding:0.5rem 0; text-align:center; }
         .search-input { width:200px; max-width:100%; padding:8px 10px; box-sizing:border-box; border:1px solid #ddd; border-radius:6px; }
         .btn-link { display:inline-block; padding:8px 12px; border-radius:6px; text-decoration:none; background:#1ec800; color:#fff; border:none; cursor:pointer; }
@@ -24,6 +22,42 @@
         .article-topic { font-size:12px; color:#777; margin-right:6px; }
         .article-link { text-decoration:none; color:#222; }
         @media (max-width:920px) { .main { flex-direction:column; } .col.side{min-width:unset;} }
+
+        .recommend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recommend-list li {
+            margin-top: 0.5rem;
+        }
+
+        .recommend-list a {
+            display: inline-block;
+            width: 180px;             /* ✅ 표시할 최대 너비 지정 (조정 가능) */
+            white-space: nowrap;      /* 줄바꿈 방지 */
+            overflow: hidden;         /* 넘친 부분 숨기기 */
+            text-overflow: ellipsis;  /* ... 으로 표시 */
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            transition: color 0.2s;
+            vertical-align: middle;
+        }
+
+        .recommend-list a:hover {
+            color: #007bff;
+        }
+
+        .recommend-title {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #ddd; /* ✅ h3 아래에 얇은 선 */
+        }
     </style>
 </head>
 <body>
@@ -41,11 +75,14 @@
 <div class="main">
     <!-- 왼쪽: 추천 밴드 -->
     <div class="col side">
-        <h3><c:out value='${member.id}'/>님의 맞춤 밴드</h3>
+        <h3 class="recommend-title">
+            <c:out value="${member.id}"/>님의 맞춤 밴드
+        </h3>
+
         <ul class="recommend-list">
             <c:forEach var="one" items="${recommend}">
                 <li>
-                    <a href="<c:url value='/band'><c:param name='no' value='${one.no}'/></c:url>">
+                    <a href="<c:url value='/band'/>?no=${one.no}" title="${one.name}">
                         <c:out value="${one.name}"/>
                     </a>
                 </li>

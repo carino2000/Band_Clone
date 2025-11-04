@@ -5,7 +5,8 @@
     <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; box-sizing:border-box;">
         <!-- left: logo -->
         <div style="display:flex; align-items:center; gap:12px;">
-            <a href="<c:url value='/band-main'/>" aria-label="밴드 메인으로 이동" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#111;">
+            <a href="<c:url value='/band-main'/>" aria-label="밴드 메인으로 이동"
+               style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#111;">
                 <div style="width:42px; height:42px; border-radius:8px; background:#1ec800; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">
                     B
                 </div>
@@ -18,16 +19,22 @@
                   style="display:flex; align-items:center; gap:8px; margin-left:8px;">
                 <input type="text" name="keyword" class="search-input" placeholder="밴드, 글, 멤버 검색" required
                        value="<c:out value='${keyword}'/>"
-                       style="width:260px; max-width:38vw; min-width:160px; padding:8px 10px; border-radius:20px; border:1px solid #eee; outline:none; box-sizing:border-box;" />
-                <button type="submit" style="padding:8px 12px; border-radius:18px; border:none; background:#117700; color:#fff; cursor:pointer;">검색</button>
+                       style="width:260px; max-width:38vw; min-width:160px; padding:8px 10px; border-radius:20px; border:1px solid #eee; outline:none; box-sizing:border-box;"/>
+                <button type="submit"
+                        style="padding:8px 12px; border-radius:18px; border:none; background:#117700; color:#fff; cursor:pointer;">
+                    검색
+                </button>
             </form>
         </div>
 
         <!-- center (간단한 네비 또는 여백) -->
         <nav aria-label="주요메뉴" style="display:flex; gap:8px; align-items:center;">
-            <a href="<c:url value='/band-main'/>" style="text-decoration:none; color:#333; padding:6px 10px; border-radius:6px;">밴드 메인</a>
+            <a href="<c:url value='/band-main'/>"
+               style="text-decoration:none; color:#333; padding:6px 10px; border-radius:6px;">밴드 메인</a>
         </nav>
-        <a href="<c:url value='/band-create'/>" style="text-decoration:none; color:#fff; background:#1ec800; padding:6px 10px; border-radius:6px; text-align: right" >새 밴드 만들기</a>
+        <a href="<c:url value='/band-create'/>"
+           style="text-decoration:none; color:#fff; background:#1ec800; padding:6px 10px; border-radius:6px; text-align: right">새
+            밴드 만들기</a>
 
         <!-- right: user area -->
         <div style="display:flex; align-items:center; gap:10px; position:relative;">
@@ -36,30 +43,51 @@
                     <div style="display:flex; align-items:center; gap:8px;">
                         <span style="font-weight:600; color:#1b3b17;"><c:out value='${member.id}'/></span>
 
-                        <a href="<c:url value='/my-page'/>" style="text-decoration:none; padding:6px 8px; border-radius:6px; background:transparent; color:#333;">내 정보</a>
+                        <a href="<c:url value='/my-page'/>"
+                           style="text-decoration:none; padding:6px 8px; border-radius:6px; background:transparent; color:#333;">내
+                            정보</a>
 
-                        <a href="<c:url value='/my/notice'/>" title="알림" style="position:relative; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; text-decoration:none; background:transparent; border:1px solid transparent;">
+                        <a href="<c:url value='/my/notice'/>"
+                           title="알림"
+                           style="position:relative; display:inline-flex; align-items:center; justify-content:center;
+          width:40px; height:40px; border-radius:8px; text-decoration:none;
+          background:transparent; border:1px solid transparent;">
                             <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block;">
-                                <path fill="#333" d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zM18 16V11c0-3.1-1.6-5.6-4.5-6.3V4a1.5 1.5 0 0 0-3 0v0.7C7.6 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                                <path fill="#333"
+                                      d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zM18 16V11c0-3.1-1.6-5.6-4.5-6.3V4a1.5 1.5 0 0 0-3 0v0.7C7.6 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z"/>
                             </svg>
+
                             <c:if test="${noticeCnt != 0}">
-                                <span style="position:absolute; top:4px; right:4px; min-width:18px; height:18px; padding:0 5px; border-radius:12px; font-size:11px; line-height:18px; background:#ff3b30; color:#fff; display:inline-block; text-align:center;">
-                                  <c:out value='${noticeCnt}'/>
-                                </span>
+        <span style="position:absolute; top:3px; right:3px; min-width:16px; height:16px;
+                     padding:0 4px; border-radius:10px; font-size:10px; line-height:16px;
+                     background:#ff3b30; color:#fff; display:inline-block; text-align:center;
+                     box-sizing:border-box;">
+            <c:out value='${noticeCnt}'/>
+        </span>
                             </c:if>
                         </a>
+
 
                         <!-- 드롭다운 토글 -->
                         <div style="position:relative;">
                             <button id="userMenuBt" aria-haspopup="true" aria-expanded="false"
-                                    style="padding:6px 8px; border-radius:6px; background:transparent; border:1px solid transparent; cursor:pointer;">▼</button>
+                                    style="padding:6px 8px; border-radius:6px; background:transparent; border:1px solid transparent; cursor:pointer;">
+                                ▼
+                            </button>
                             <div id="userDropdown" role="menu" aria-hidden="true"
                                  style="display:none; position:absolute; right:0; top:44px; min-width:160px; background:#fff; border:1px solid #eee; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,0.06); overflow:hidden; z-index:80;">
-                                <a href="<c:url value='/my/notice'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 알림</a>
-                                <a href="<c:url value='/band-main'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 밴드</a>
-                                <a href="<c:url value='/my-page'/>" style="display:block; padding:10px 12px; text-decoration:none; color:#333;">설정</a>
-                                <form id="logoutForm" action="<c:url value='/log-out'/>" method="post" style="margin:0;">
-                                    <button type="button" onclick="logoutConfirm()" style="width:100%; text-align:left; padding:10px 12px; border:none; background:transparent; cursor:pointer; color:#c33;">로그아웃</button>
+                                <a href="<c:url value='/my/notice'/>"
+                                   style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 알림</a>
+                                <a href="<c:url value='/band-main'/>"
+                                   style="display:block; padding:10px 12px; text-decoration:none; color:#333;">내 밴드</a>
+                                <a href="<c:url value='/my-page'/>"
+                                   style="display:block; padding:10px 12px; text-decoration:none; color:#333;">설정</a>
+                                <form id="logoutForm" action="<c:url value='/log-out'/>" method="post"
+                                      style="margin:0;">
+                                    <button type="button" onclick="logoutConfirm()"
+                                            style="width:100%; text-align:left; padding:10px 12px; border:none; background:transparent; cursor:pointer; color:#c33;">
+                                        로그아웃
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -67,8 +95,10 @@
                 </c:when>
                 <c:otherwise>
                     <div style="display:flex; gap:8px;">
-                        <a href="<c:url value='/log-in'/>" style="text-decoration:none; padding:6px 10px; border-radius:6px; border:1px solid #e6e6e6;">로그인</a>
-                        <a href="<c:url value='/sign-up'/>" style="text-decoration:none; padding:6px 10px; border-radius:6px; background:#1ec800; color:#fff;">회원가입</a>
+                        <a href="<c:url value='/log-in'/>"
+                           style="text-decoration:none; padding:6px 10px; border-radius:6px; border:1px solid #e6e6e6;">로그인</a>
+                        <a href="<c:url value='/sign-up'/>"
+                           style="text-decoration:none; padding:6px 10px; border-radius:6px; background:#1ec800; color:#fff;">회원가입</a>
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -79,16 +109,20 @@
         function logoutConfirm() {
             if (confirm("로그아웃 하시겠습니까?")) {
                 var f = document.getElementById('logoutForm');
-                if(f){ f.submit(); } else { location.href = '<c:url value="/log-out"/>'; }
+                if (f) {
+                    f.submit();
+                } else {
+                    location.href = '<c:url value="/log-out"/>';
+                }
             }
         }
 
         // 드롭다운 토글
-        (function(){
+        (function () {
             var userMenuBt = document.getElementById('userMenuBt');
             var userDropdown = document.getElementById('userDropdown');
-            if(userMenuBt && userDropdown){
-                userMenuBt.addEventListener('click', function(e){
+            if (userMenuBt && userDropdown) {
+                userMenuBt.addEventListener('click', function (e) {
                     var expanded = this.getAttribute('aria-expanded') === 'true';
                     this.setAttribute('aria-expanded', String(!expanded));
                     userDropdown.style.display = expanded ? 'none' : 'block';
@@ -96,11 +130,11 @@
                     e.stopPropagation();
                 });
 
-                document.addEventListener('click', function(e){
-                    if(!userMenuBt.contains(e.target) && !userDropdown.contains(e.target)){
+                document.addEventListener('click', function (e) {
+                    if (!userMenuBt.contains(e.target) && !userDropdown.contains(e.target)) {
                         userDropdown.style.display = 'none';
                         userDropdown.setAttribute('aria-hidden', 'true');
-                        userMenuBt.setAttribute('aria-expanded','false');
+                        userMenuBt.setAttribute('aria-expanded', 'false');
                     }
                 });
             }
