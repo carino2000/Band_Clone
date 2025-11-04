@@ -20,7 +20,7 @@
         .search-input { width:200px; max-width:100%; padding:8px 10px; box-sizing:border-box; border:1px solid #ddd; border-radius:6px; }
         .btn-link { display:inline-block; padding:8px 12px; border-radius:6px; text-decoration:none; background:#1ec800; color:#fff; border:none; cursor:pointer; }
         .article-item { padding:12px 0; border-bottom:1px solid #f0f0f0; }
-        .article-topic { font-size:12px; color:#777; margin-right:6px; }
+        .article-topic { font-size:12px; color:#777; margin-right:6px; margin-bottom: 3px}
         .article-link { text-decoration:none; color:#222; }
         @media (max-width:920px) { .main { flex-direction:column; } .col.side{min-width:unset;} }
     </style>
@@ -83,7 +83,6 @@
                         <div>
                             <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
                                 <span class="article-topic"><c:out value="${topic}"/></span>
-                                <c:if test="${!st.last}"><span class="article-topic">|</span></c:if>
                             </c:forEach>
                             <div>
                                 <span><c:out value="${one.masterId}"/>님의 밴드</span>

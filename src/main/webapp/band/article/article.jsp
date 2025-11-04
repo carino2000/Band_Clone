@@ -219,6 +219,7 @@
                                                         <form id="deleteCommentForm${cmt.idx}" action="<c:url value='/comment/delete'/>" method="post" style="display:inline;">
                                                             <input type="hidden" name="idx" value="<c:out value='${cmt.idx}'/>"/>
                                                             <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
+                                                            <input type="hidden" name="writerId" value="${cmt.writerId}">
                                                             <button type="button" class="btn warn" onclick="confirmAndSubmit('deleteCommentForm${cmt.idx}', '해당 댓글을 삭제하시겠습니까?')">삭제</button>
                                                         </form>
                                                     </c:if>
