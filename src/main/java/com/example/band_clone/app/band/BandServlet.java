@@ -111,17 +111,7 @@ public class BandServlet extends HttpServlet {
 
             int bandMemberCount = memberList.size();
 
-
-            req.setAttribute("bandMemberCount" , bandMemberCount);
-            req.setAttribute("memberList", memberList);
-            req.setAttribute("isApproved", req.getParameter("isApproved"));
-            req.setAttribute("isNotMember", req.getParameter("isNotMember"));
-            req.setAttribute("isPrivate", req.getParameter("isPrivate"));
-
-            req.setAttribute("member", m);
-            req.setAttribute("band", band);
-            req.setAttribute("articles", articles);
-            req.getRequestDispatcher("/band/article/article.jsp").forward(req, resp);
+            resp.sendRedirect("/band");
         }
 
     }
