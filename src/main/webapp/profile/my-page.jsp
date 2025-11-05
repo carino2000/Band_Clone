@@ -141,7 +141,6 @@
 
     function confirmDelete() {
         if (confirm("정말로 계정을 삭제하시겠습니까? 삭제 시 복구할 수 없습니다.")) {
-            // submit delete form (POST)
             var f = document.getElementById('deleteForm');
             if (f) f.submit();
         }
