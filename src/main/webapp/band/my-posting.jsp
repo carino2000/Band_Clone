@@ -32,13 +32,13 @@
     <div class="col-center">
         <div class="heading">----------------- 내가 쓴 글 -----------------</div>
 
-        <c:if test="${empty writerId}">
+        <c:if test="${empty articles}">
             <div class="article-item">
                 <div>작성한 글이 없습니다.</div>
             </div>
         </c:if>
 
-        <c:forEach items="${writerId}" var="one">
+        <c:forEach items="${articles}" var="one">
             <div class="article-item" role="article" aria-label="내가 쓴 글">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                     <div>

@@ -28,10 +28,8 @@ public class BandServlet extends HttpServlet {
             req.setAttribute("msg", msg);
         }
 
-
         int no = req.getParameter("no") == null ? -1 : Integer.parseInt(req.getParameter("no"));
         Band band = BandUtil.selectBandByNo(no);
-
         if (no == -1 || band == null) {
             resp.sendRedirect("/band-main");
             return;
