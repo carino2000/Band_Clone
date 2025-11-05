@@ -5,6 +5,7 @@ import com.example.band_clone.app.util.BandUtil;
 import com.example.band_clone.app.util.TopicUtil;
 import com.example.band_clone.app.vo.Article;
 import com.example.band_clone.app.vo.Band;
+import com.example.band_clone.app.vo.BandStatus;
 import com.example.band_clone.app.vo.Member;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,6 +30,7 @@ public class BandSearchServlet extends HttpServlet {
         int maxPage = keywordBands.size() % 10 == 0 ? keywordBands.size() / 10 : keywordBands.size() / 10 + 1;
 
         List<Band> keywordBandsByPage = BandUtil.selectBandByKeywordAndPage(keyword, currentPage);
+
 
         req.setAttribute("maxPage", maxPage);
         req.setAttribute("recommend", recommend);
