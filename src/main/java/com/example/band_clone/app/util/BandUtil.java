@@ -99,6 +99,7 @@ public class BandUtil {
     public static List<Band> selectBandByKeywordAndPage(String keyword, int page) {
         try {
             List<Band> list = null;
+
             String param = "%" + keyword + "%";
             int offset = (page - 1) * 10;
             Map map = Map.of("keyword", param, "offset", offset);
