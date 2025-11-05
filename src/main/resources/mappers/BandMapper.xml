@@ -28,6 +28,9 @@
     <select id="selectBandByKeywordAndPage" parameterType="map" resultType="Band">
         select * from band where name like #{keyword} or description like #{keyword} order by no desc limit 10 offset #{offset};
     </select>
+    <select id="checkJoinedBandNo" parameterType="string" resultType="int">
+        select no from band where no in (select bandNo from bandMember where memberId=#{id})
+    </select>
 
 
 

@@ -1,9 +1,6 @@
 package com.example.band_clone.app.util;
 
-import com.example.band_clone.app.vo.Article;
-import com.example.band_clone.app.vo.Band;
-import com.example.band_clone.app.vo.BandMember;
-import com.example.band_clone.app.vo.Member;
+import com.example.band_clone.app.vo.*;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -117,24 +114,29 @@ public class BandUtil {
 
     }
 
-    /*
-       // select * from article where content like '%#{}%' order by wroteAt desc limit 5 offset 5;
-    public static List<Article> selectByKeyword(String keyword, int page) {//수정중
-        List<Article> list = null;
-        int offset = (page - 1) * 10;
-        Map map = Map.of("keyword", keyword, "offset", offset);
+
+    public static List<BandStatus> convertToBandStatus(List<Band> keywordBandsByPage, String id) {
+        List<Integer> list = null;
         try {
             SqlSession session = MyBatisUtil.build().openSession(true);
-            list = session.selectList("mappers.ArticleMapper.selectByKeyword", map);
+            list = session.selectList("mappers.BandMapper.checkJoinedBandNo", id);
             session.close();
-            return list;
+
+            // strim 예습 느낌..?
+            List<Integer> finalList = list;
+            List<BandStatus> keywordBandStautsByPage = keywordBandsByPage.stream().map(band -> {
+                BandStatus status = new BandStatus();
+                status.setBand(band);
+                status.setJoined(finalList.contains(band.getNo()));
+                return status;
+            }).toList();
+
+            return keywordBandStautsByPage;
         } catch (Exception e) {
-            System.out.println("Error in selectByKeyword: " + e);
+            System.out.println("Error in selectBandByKeyword: " + e);
             return null;
         }
-
     }
-     */
 
 
 // -------------------------------------- delete --------------------------------------

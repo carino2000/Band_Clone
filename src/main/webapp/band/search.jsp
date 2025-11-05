@@ -127,6 +127,7 @@
                             <div>
                                 <span><small><c:out value='${one.masterId}'/>님의 밴드</small></span>
                                 <span>&middot; <small><c:out value='${one.prettyCreatedAt}'/>에 창설됨</small></span>
+                                <span><small><c:if test="${one.joined}"> - ✅(맴버)</c:if></small></span>
                             </div>
                         </div>
                     </div>

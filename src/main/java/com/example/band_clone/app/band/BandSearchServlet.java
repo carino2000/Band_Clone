@@ -32,10 +32,13 @@ public class BandSearchServlet extends HttpServlet {
         List<Band> keywordBandsByPage = BandUtil.selectBandByKeywordAndPage(keyword, currentPage);
 
 
+        List<BandStatus> keywordBandStautsByPage = BandUtil.convertToBandStatus(keywordBandsByPage, m.getId());
+
+
         req.setAttribute("maxPage", maxPage);
         req.setAttribute("recommend", recommend);
         req.setAttribute("keyword" ,  keyword);
-        req.setAttribute("keywordBands", keywordBandsByPage);
+        req.setAttribute("keywordBands", keywordBandStautsByPage);
         req.getRequestDispatcher("/band/search.jsp").forward(req, resp);
     }
 }
