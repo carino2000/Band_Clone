@@ -251,7 +251,7 @@
                                     </button>
                                 </form>
                             </c:when>
-                            <c:when test="${!isNotMember && member.id != band.masterId}">
+                            <c:when test="${isApproved && member.id != band.masterId}">
                                 <form id="bandLeaveForm" action="<c:url value='/band-leave'/>" method="post"
                                       style="display:inline;">
                                     <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
@@ -259,6 +259,11 @@
                                             onclick="confirmAndSubmit('bandLeaveForm', '정말로 이 밴드에서 탈퇴하시겠습니까?')">밴드 탈퇴
                                     </button>
                                 </form>
+                            </c:when>
+                            <c:when test="${!isApproved && !isNotMember}">
+                                <button type="button" class="btn ghost"
+                                        onclick="alertMsg()">승인 대기
+                                </button>
                             </c:when>
                             <c:otherwise>
                                 <a href="<c:url value='/band/join'><c:param name='bandNo' value='${band.no}'/></c:url>"
@@ -269,7 +274,7 @@
                 </div>
 
                 <%-- 게시글 작성 폼(권한 있는 경우) --%>
-                <c:if test="${!isNotMember}">
+                <c:if test="${isApproved}">
                     <form id="createNewArticle" action="<c:url value='/band/new-article'/>" method="post"
                           style="margin-top:12px;">
                         <input type="hidden" name="bandNo" value="<c:out value='${band.no}'/>"/>
@@ -347,7 +352,7 @@
                                 </div>
 
                                 <!-- 댓글 입력 -->
-                                <c:if test="${!isNotMember}">
+                                <c:if test="${isApproved}">
                                     <div style="margin-top:16px; padding:10px 4px 0;">
                                         <form id="newComment${one.idx}" action="/band" method="post"
                                               style="display:flex; gap:10px; align-items:center;">
@@ -433,6 +438,10 @@
             var f = document.getElementById(formId);
             if (f) f.submit();
         }
+    }
+
+    function alertMsg(){
+        window.alert("가입 승인 절차가 진행중인 밴드입니다.");
     }
 </script>
 </body>

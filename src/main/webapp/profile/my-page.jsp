@@ -134,7 +134,7 @@
 
 <script>
     function confirmEdit() {
-        if (confirm("정말로 정보를 수정하시겠습니까?")) {
+        if (confirm("프로필을 수정하시겠습니까?")) {
             document.getElementById('editForm').submit();
         }
     }

@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet("/log-out")
 public class LogoutServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Cookie cookie = null;
         Cookie[] cookies = req.getCookies() == null ? new Cookie[0] : req.getCookies();

@@ -27,7 +27,7 @@ public class SignUpServlet extends HttpServlet {
         String name = req.getParameter("name") == null ? null : req.getParameter("name");
         String nickname = req.getParameter("nickname") == null ? null : req.getParameter("nickname");
         int age = req.getParameter("age") == null ? -1 : Integer.parseInt(req.getParameter("age"));
-        String interest = req.getParameter("interest") == null ? null : req.getParameter("interest");
+        String interest = req.getParameter("interest") == null ? "없음" : req.getParameter("interest");
         boolean agree = req.getParameter("agree") != null;
 
         String mainError = null;

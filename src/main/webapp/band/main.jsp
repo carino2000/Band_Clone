@@ -223,7 +223,6 @@
                             <div>
                                 <c:forEach items="${one.prettyTopic}" var="topic" varStatus="st">
                                     <span class="article-topic"><c:out value="${topic}"/></span>
-                                    <c:if test="${!st.last}"><span class="article-topic">|</span></c:if>
                                 </c:forEach>
                                 <div>
                                     <span><c:out value="${one.masterId}"/>님의 밴드</span>

@@ -24,7 +24,6 @@ public class BandMainServlet extends HttpServlet {
 
         List<Band> myBands = BandUtil.selectMyBandsById(m.getId());
         List<Band> joinedBands = BandUtil.selectJoinedBandsById(m.getId());
-        List<Band> otherBands = BandUtil.selectAllBandsExceptMyBands(m.getId());
         List<Band> recommend = TopicUtil.recommendBandByMostTopic(m.getId());
 
         if (joinedBands != null) {
@@ -40,10 +39,10 @@ public class BandMainServlet extends HttpServlet {
         } else if (msg.equals("delete")) {
             req.setAttribute("msg", 2);
         }
+
         req.setAttribute("recommend", recommend);
         req.setAttribute("myBands", myBands);
         req.setAttribute("joinedBands", joinedBands);
-        req.setAttribute("otherBands", otherBands);
         req.getRequestDispatcher("/band/main.jsp").forward(req, resp);
 
 
